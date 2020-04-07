@@ -1,0 +1,21 @@
+server:
+  port: 8667
+  servlet:
+    context-path: /regiest-server
+
+spring:
+  application:
+    name: regiest-server
+
+
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    renewal-percent-threshold: 0.5
+    enable-self-preservation: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/eureka/  #必须以eureka结尾，否则无法注册

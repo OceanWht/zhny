@@ -1,0 +1,17 @@
+server:
+  port: 8555
+  servlet:
+    context-path: /api-gateway
+
+spring:
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8667/regiest-server/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    hostname: localhost

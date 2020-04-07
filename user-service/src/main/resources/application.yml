@@ -1,0 +1,30 @@
+server:
+  port: 8777
+  servlet:
+    context-path: /user-service
+
+spring:
+  druid:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+    maxActive: 30
+    minIdle: 5
+    maxWait: 10000
+    validationQuery: SELECT 'X'
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+  application:
+    name: user-service
+
+eureka:
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8667/regiest-server/eureka/
