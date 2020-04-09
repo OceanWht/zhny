@@ -3,6 +3,7 @@ package com.xl.ems.apigateway.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,18 +29,18 @@ public class GenericRest {
     /**
      * ParameterizedTypeReference  支持反序列化的参数  包装泛型类的类
      * @param url 请求链接
-     * @param reqBody 请求参数
+     * @param entity 请求参数
      * @param responseType 返回的数据类型
      * @param <T>
      * @return
      *
      * post方法
      */
-    public <T> ResponseEntity<T> post(String url, Object reqBody, ParameterizedTypeReference<T> responseType){
+    public <T> ResponseEntity<T> post(String url, HttpEntity entity, ParameterizedTypeReference<T> responseType){
             RestTemplate template = getRestTemplate(url);
-            url.replace(directFlag,"");
+            url = url.replace(directFlag,"");
             //exchange既支持get,也支持post,HttpMethod指定
-            return template.exchange(url, HttpMethod.POST,new HttpEntity(reqBody),responseType);
+            return template.exchange(url, HttpMethod.POST,entity,responseType);
     }
 
     private RestTemplate getRestTemplate(String url) {

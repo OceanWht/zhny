@@ -4,9 +4,15 @@ server:
     context-path: /user-service
 
 spring:
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 5
   druid:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/user?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/xl_user?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: root
     maxActive: 30
@@ -28,3 +34,16 @@ eureka:
       enabled: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8667/regiest-server/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+user:
+  api_gateway_surface: api_gateway_surface
+  8008_surface: 8008_surface
+  pass:
+    patten: "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z\\W_]+$)(?![a-z0-9]+$)(?![a-z\\W_]+$)(?![0-9\\W_]+$)[a-zA-Z0-9\\W_]{8,16}$"
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+

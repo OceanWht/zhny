@@ -27,7 +27,7 @@ public class IllegalParamsException extends RuntimeException implements WithType
     }
 
     public enum Type{
-        WRONG_PAGE_NUM,WRONG_TYPE
+        WRONG_PAGE_NUM(),WRONG_TYPE();
     }
 
 }

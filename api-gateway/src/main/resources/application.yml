@@ -4,6 +4,17 @@ server:
     context-path: /api-gateway
 
 spring:
+  druid:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xl_surface?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+    maxActive: 30
+    minIdle: 5
+    maxWait: 10000
+    validationQuery: SELECT 'X'
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
   application:
     name: api-gateway
 
@@ -15,3 +26,6 @@ eureka:
     register-with-eureka: true
   instance:
     hostname: localhost
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+

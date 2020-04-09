@@ -27,44 +27,42 @@ public class GenericRest {
 
     /**
      * ParameterizedTypeReference  支持反序列化的参数  包装泛型类的类
-     * @param url 请求链接
-     * @param reqBody 请求参数
+     *
+     * @param url          请求链接
+     * @param reqBody      请求参数
      * @param responseType 返回的数据类型
      * @param <T>
-     * @return
-     *
-     * post方法
+     * @return post方法
      */
-    public <T> ResponseEntity<T> post(String url, Object reqBody, ParameterizedTypeReference<T> responseType){
-            RestTemplate template = getRestTemplate(url);
-            url.replace(directFlag,"");
-            //exchange既支持get,也支持post,HttpMethod指定
-            return template.exchange(url, HttpMethod.POST,new HttpEntity(reqBody),responseType);
+    public <T> ResponseEntity<T> post(String url, Object reqBody, ParameterizedTypeReference<T> responseType) {
+        RestTemplate template = getRestTemplate(url);
+        url = url.replace(directFlag, "");
+        //exchange既支持get,也支持post,HttpMethod指定
+        return template.exchange(url, HttpMethod.POST, new HttpEntity(reqBody), responseType);
     }
 
     private RestTemplate getRestTemplate(String url) {
-        if (url.contains(directFlag)){
+        if (url.contains(directFlag)) {
             return directRestTemplate;
-        }else{
+        } else {
             return lbRestTemplate;
         }
     }
 
     /**
      * get方法没有body,用empty替换
+     *
      * @param url
      * @param responseType
      * @param <T>
-     * @return
-     *
-     * get方法
+     * @return get方法
      */
-    public <T> ResponseEntity<T> get(String url, ParameterizedTypeReference<T> responseType){
+    public <T> ResponseEntity<T> get(String url, ParameterizedTypeReference<T> responseType) {
 
         RestTemplate template = getRestTemplate(url);
 
-        url = url.replace(directFlag,"");
+        url = url.replace(directFlag, "");
         //exchange既支持get,也支持post,HttpMethod指定 get方法没有body,用empty替换
-        return template.exchange(url, HttpMethod.GET,HttpEntity.EMPTY,responseType);
+        return template.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, responseType);
     }
 }

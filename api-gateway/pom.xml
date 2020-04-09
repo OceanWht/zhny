@@ -6,7 +6,7 @@
     <artifactId>api-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>api-gateway</name>
-    <description>服务消费者（综合能源后台）</description>
+    <description>服务消费者（综合能源后台，负责与软件公司接口部分）</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -56,6 +56,30 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!--数据库相关依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.20</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <!--常用工具类-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>26.0-jre</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
