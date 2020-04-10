@@ -68,8 +68,8 @@
                enableUpdateByExample="true">
         </table>-->
 
-        <table schema="xl-user" tableName="surface_url"
-               domainObjectName="SurfaceUrlModel" enableCountByExample="false"
+        <table schema="xl-user" tableName="ems_company"
+               domainObjectName="EmsCompanyModel" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>

@@ -6,6 +6,7 @@ public enum RestCode {
     UNKNOWN_ERROR(1,"未知异常"),
     TOKEN_INVALID(2,"TOKEN失效"),
     USER_NOT_EXIST(3,"用户不存在"),
+    WRONG_LOGIN(4,"登陆失败"),
     WRONG_PAGE(10100,"页码不合法"),
     LACK_PARAMS(10101,"缺少参数"),
     WRONG_QUERY(10102,"查询失败"),
