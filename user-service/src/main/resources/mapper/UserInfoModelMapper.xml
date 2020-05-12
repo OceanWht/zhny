@@ -135,4 +135,10 @@
       and pass = #{pass,jdbcType=VARCHAR}
     </if>
   </select>
+
+  <select id="getAllUserInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+  </select>
 </mapper>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.userservice.mapper.XlUnitlinkModelMapper">
+    <resultMap id="BaseResultMap" type="com.xl.ems.userservice.model.XlUnitlinkModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="ut" property="ut" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="childunitid" property="childunitid" jdbcType="VARCHAR"/>
+        <result column="parentunitid" property="parentunitid" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="VARCHAR"/>
+        <result column="dataid" property="dataid" jdbcType="INTEGER"/>
+        <result column="io" property="io" jdbcType="INTEGER"/>
+        <result column="i1" property="i1" jdbcType="VARCHAR"/>
+        <result column="i2" property="i2" jdbcType="VARCHAR"/>
+        <result column="i3" property="i3" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, uid, ut, name, childunitid, parentunitid, userid, dataid, io, i1, i2, i3
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from xl_unitlink
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xl_unitlink
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.xl.ems.userservice.model.XlUnitlinkModel">
+    insert into xl_unitlink (id, uid, ut, 
+      name, childunitid, parentunitid, 
+      userid, dataid, io, 
+      i1, i2, i3)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{ut,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{childunitid,jdbcType=VARCHAR}, #{parentunitid,jdbcType=INTEGER}, 
+      #{userid,jdbcType=VARCHAR}, #{dataid,jdbcType=INTEGER}, #{io,jdbcType=INTEGER}, 
+      #{i1,jdbcType=VARCHAR}, #{i2,jdbcType=VARCHAR}, #{i3,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.xl.ems.userservice.model.XlUnitlinkModel">
+        insert into xl_unitlink
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="ut != null">
+                ut,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="childunitid != null">
+                childunitid,
+            </if>
+            <if test="parentunitid != null">
+                parentunitid,
+            </if>
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="dataid != null">
+                dataid,
+            </if>
+            <if test="io != null">
+                io,
+            </if>
+            <if test="i1 != null">
+                i1,
+            </if>
+            <if test="i2 != null">
+                i2,
+            </if>
+            <if test="i3 != null">
+                i3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="ut != null">
+                #{ut,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="childunitid != null">
+                #{childunitid,jdbcType=VARCHAR},
+            </if>
+            <if test="parentunitid != null">
+                #{parentunitid,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="dataid != null">
+                #{dataid,jdbcType=INTEGER},
+            </if>
+            <if test="io != null">
+                #{io,jdbcType=INTEGER},
+            </if>
+            <if test="i1 != null">
+                #{i1,jdbcType=VARCHAR},
+            </if>
+            <if test="i2 != null">
+                #{i2,jdbcType=VARCHAR},
+            </if>
+            <if test="i3 != null">
+                #{i3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.userservice.model.XlUnitlinkModel">
+        update xl_unitlink
+        <set>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="ut != null">
+                ut = #{ut,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="childunitid != null">
+                childunitid = #{childunitid,jdbcType=VARCHAR},
+            </if>
+            <if test="parentunitid != null">
+                parentunitid = #{parentunitid,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="dataid != null">
+                dataid = #{dataid,jdbcType=INTEGER},
+            </if>
+            <if test="io != null">
+                io = #{io,jdbcType=INTEGER},
+            </if>
+            <if test="i1 != null">
+                i1 = #{i1,jdbcType=VARCHAR},
+            </if>
+            <if test="i2 != null">
+                i2 = #{i2,jdbcType=VARCHAR},
+            </if>
+            <if test="i3 != null">
+                i3 = #{i3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xl.ems.userservice.model.XlUnitlinkModel">
+    update xl_unitlink
+    set uid = #{uid,jdbcType=INTEGER},
+      ut = #{ut,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      childunitid = #{childunitid,jdbcType=VARCHAR},
+      parentunitid = #{parentunitid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=VARCHAR},
+      dataid = #{dataid,jdbcType=INTEGER},
+      io = #{io,jdbcType=INTEGER},
+      i1 = #{i1,jdbcType=VARCHAR},
+      i2 = #{i2,jdbcType=VARCHAR},
+      i3 = #{i3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xl_unitlink
+    </select>
+    <select id="getByUids" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from xl_unitlink where `parentunitid` in (select `uid` from xl_unitlink where
+        parentunitid=#{uid,jdbcType=INTEGER} or uid=#{uid,jdbcType=INTEGER})
+        or uid=#{uid,jdbcType=INTEGER}
+    </select>
+
+    <select id="getUidsByUid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select xu.uid from xl_unitlink xu where xu.parentunitid in
+    (select xuk.`uid` from xl_unitlink xuk where xuk.parentunitid=#{uid,jdbcType=INTEGER} or xuk.uid=#{uid,jdbcType=INTEGER})
+    or xu.uid = #{uid,jdbcType=INTEGER}
+  </select>
+
+    <delete id="deleteByList" parameterType="java.util.List">
+        delete from xl_unitlink where uid in
+        <foreach collection="list" index="index" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </delete>
+    <update id="banthUpdate" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";" open="" close="">
+            update xl_unitlink
+            set
+            dataid = #{item.dataid,jdbcType=INTEGER}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <select id="selectUnitLink" resultMap="BaseResultMap">
+        select * from (select xuk.* from xl_unitlink xuk where xuk.`parentunitid` in (select xukk.`uid` from xl_unitlink xukk where xukk.parentunitid=#{uid,jdbcType=INTEGER} or xukk.uid=#{uid,jdbcType=INTEGER})
+        or xuk.uid=#{uid,jdbcType=INTEGER}) as ttt where  ttt.dataid=#{dataid,jdbcType=INTEGER} or ttt.uid=#{uid,jdbcType=INTEGER}
+    </select>
+</mapper>

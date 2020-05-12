@@ -2,7 +2,6 @@ package com.xl.ems.userservice.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.google.common.base.Strings;
-import com.mysql.cj.xdevapi.JsonArray;
 import com.xl.ems.userservice.common.RestCode;
 import com.xl.ems.userservice.common.RestResponse;
 import com.xl.ems.userservice.model.UserInfoModel;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller

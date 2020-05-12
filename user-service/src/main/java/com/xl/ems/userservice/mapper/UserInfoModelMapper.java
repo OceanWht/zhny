@@ -3,6 +3,8 @@ package com.xl.ems.userservice.mapper;
 import com.xl.ems.userservice.model.UserInfoModel;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 @Mapper
 public interface UserInfoModelMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,4 +22,6 @@ public interface UserInfoModelMapper {
     UserInfoModel getUserInfoByNP(UserInfoModel userInfoModel);
 
     int updateUserInfo(UserInfoModel userInfoModel);
+
+    CopyOnWriteArrayList<UserInfoModel> getAllUserInfo();
 }

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.userservice.mapper.XlUnitCalcGroupModelMapper">
+    <resultMap id="BaseResultMap" type="com.xl.ems.userservice.model.XlUnitCalcGroupModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="groupid" property="groupid" jdbcType="VARCHAR"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="uname" property="uname" jdbcType="VARCHAR"/>
+        <result column="ioo" property="ioo" jdbcType="VARCHAR"/>
+        <result column="groupname" property="groupname" jdbcType="VARCHAR"/>
+        <result column="dataid" property="dataid" jdbcType="VARCHAR"/>
+        <result column="dataname" property="dataname" jdbcType="VARCHAR"/>
+        <result column="datacode" property="datacode" jdbcType="VARCHAR"/>
+        <result column="duname" property="duname" jdbcType="VARCHAR"/>
+        <result column="ducode" property="ducode" jdbcType="VARCHAR"/>
+        <result column="iscalculate" property="iscalculate" jdbcType="INTEGER"/>
+        <result column="isautocollect" property="isautocollect" jdbcType="INTEGER"/>
+        <result column="i1" property="i1" jdbcType="VARCHAR"/>
+        <result column="i2" property="i2" jdbcType="VARCHAR"/>
+        <result column="i3" property="i3" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, groupid, uid, uname, ioo, groupname, dataid, dataname, datacode, duname, ducode, 
+    iscalculate, isautocollect, i1, i2, i3
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="com.xl.ems.userservice.model.XlUnitCalcGroupModelKey">
+        select
+        <include refid="Base_Column_List"/>
+        from xl_unitcalcgroup
+        where groupid = #{groupid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.xl.ems.userservice.model.XlUnitCalcGroupModelKey">
+    delete from xl_unitcalcgroup
+    where  groupid = #{groupid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.xl.ems.userservice.model.XlUnitCalcGroupModel">
+    insert into xl_unitcalcgroup (id, groupid, uid, 
+      uname, ioo, groupname, 
+      dataid, dataname, datacode, 
+      duname, ducode, iscalculate, 
+      isautocollect, i1, i2, 
+      i3)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{uname,jdbcType=VARCHAR}, #{ioo,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR}, 
+      #{dataid,jdbcType=VARCHAR}, #{dataname,jdbcType=VARCHAR}, #{datacode,jdbcType=VARCHAR}, 
+      #{duname,jdbcType=VARCHAR}, #{ducode,jdbcType=VARCHAR}, #{iscalculate,jdbcType=INTEGER}, 
+      #{isautocollect,jdbcType=INTEGER}, #{i1,jdbcType=VARCHAR}, #{i2,jdbcType=VARCHAR}, 
+      #{i3,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.xl.ems.userservice.model.XlUnitCalcGroupModel">
+        insert into xl_unitcalcgroup
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="groupid != null">
+                groupid,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="uname != null">
+                uname,
+            </if>
+            <if test="ioo != null">
+                ioo,
+            </if>
+            <if test="groupname != null">
+                groupname,
+            </if>
+            <if test="dataid != null">
+                dataid,
+            </if>
+            <if test="dataname != null">
+                dataname,
+            </if>
+            <if test="datacode != null">
+                datacode,
+            </if>
+            <if test="duname != null">
+                duname,
+            </if>
+            <if test="ducode != null">
+                ducode,
+            </if>
+            <if test="iscalculate != null">
+                iscalculate,
+            </if>
+            <if test="isautocollect != null">
+                isautocollect,
+            </if>
+            <if test="i1 != null">
+                i1,
+            </if>
+            <if test="i2 != null">
+                i2,
+            </if>
+            <if test="i3 != null">
+                i3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="groupid != null">
+                #{groupid,jdbcType=VARCHAR},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="uname != null">
+                #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="ioo != null">
+                #{ioo,jdbcType=VARCHAR},
+            </if>
+            <if test="groupname != null">
+                #{groupname,jdbcType=VARCHAR},
+            </if>
+            <if test="dataid != null">
+                #{dataid,jdbcType=VARCHAR},
+            </if>
+            <if test="dataname != null">
+                #{dataname,jdbcType=VARCHAR},
+            </if>
+            <if test="datacode != null">
+                #{datacode,jdbcType=VARCHAR},
+            </if>
+            <if test="duname != null">
+                #{duname,jdbcType=VARCHAR},
+            </if>
+            <if test="ducode != null">
+                #{ducode,jdbcType=VARCHAR},
+            </if>
+            <if test="iscalculate != null">
+                #{iscalculate,jdbcType=INTEGER},
+            </if>
+            <if test="isautocollect != null">
+                #{isautocollect,jdbcType=INTEGER},
+            </if>
+            <if test="i1 != null">
+                #{i1,jdbcType=VARCHAR},
+            </if>
+            <if test="i2 != null">
+                #{i2,jdbcType=VARCHAR},
+            </if>
+            <if test="i3 != null">
+                #{i3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.userservice.model.XlUnitCalcGroupModel">
+        update xl_unitcalcgroup
+        <set>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="uname != null">
+                uname = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="ioo != null">
+                ioo = #{ioo,jdbcType=VARCHAR},
+            </if>
+            <if test="groupname != null">
+                groupname = #{groupname,jdbcType=VARCHAR},
+            </if>
+            <if test="dataid != null">
+                dataid = #{dataid,jdbcType=VARCHAR},
+            </if>
+            <if test="dataname != null">
+                dataname = #{dataname,jdbcType=VARCHAR},
+            </if>
+            <if test="datacode != null">
+                datacode = #{datacode,jdbcType=VARCHAR},
+            </if>
+            <if test="duname != null">
+                duname = #{duname,jdbcType=VARCHAR},
+            </if>
+            <if test="ducode != null">
+                ducode = #{ducode,jdbcType=VARCHAR},
+            </if>
+            <if test="iscalculate != null">
+                iscalculate = #{iscalculate,jdbcType=INTEGER},
+            </if>
+            <if test="isautocollect != null">
+                isautocollect = #{isautocollect,jdbcType=INTEGER},
+            </if>
+            <if test="i1 != null">
+                i1 = #{i1,jdbcType=VARCHAR},
+            </if>
+            <if test="i2 != null">
+                i2 = #{i2,jdbcType=VARCHAR},
+            </if>
+            <if test="i3 != null">
+                i3 = #{i3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+        and groupid = #{groupid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xl.ems.userservice.model.XlUnitCalcGroupModel">
+    update xl_unitcalcgroup
+    set uid = #{uid,jdbcType=INTEGER},
+      uname = #{uname,jdbcType=VARCHAR},
+      ioo = #{ioo,jdbcType=VARCHAR},
+      groupname = #{groupname,jdbcType=VARCHAR},
+      dataid = #{dataid,jdbcType=VARCHAR},
+      dataname = #{dataname,jdbcType=VARCHAR},
+      datacode = #{datacode,jdbcType=VARCHAR},
+      duname = #{duname,jdbcType=VARCHAR},
+      ducode = #{ducode,jdbcType=VARCHAR},
+      iscalculate = #{iscalculate,jdbcType=INTEGER},
+      isautocollect = #{isautocollect,jdbcType=INTEGER},
+      i1 = #{i1,jdbcType=VARCHAR},
+      i2 = #{i2,jdbcType=VARCHAR},
+      i3 = #{i3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and groupid = #{groupid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xl_unitcalcgroup
+    </select>
+
+
+    <select id="getGroupIds" parameterType="java.util.List" resultType="java.lang.String">
+        select groupid from xl_unitcalcgroup where uid in
+        <foreach collection="list" item="item" close=")" separator="," open="(" index="index">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xl_unitcalcgroup where uid = #{uid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectUnitByUid"  resultMap="BaseResultMap">
+       select * from xl_unitcalcgroup where uid in
+       (select uid from xl_unitlink where `parentunitid` in (select `uid` from xl_unitlink where parentunitid=#{uid,jdbcType=INTEGER} or uid=#{uid,jdbcType=INTEGER}) or uid=#{uid,jdbcType=INTEGER})
+       and dataid = #{dataid,jdbcType=VARCHAR} and ioo=#{ioo,jdbcType=VARCHAR}
+
+    </select>
+
+
+</mapper>

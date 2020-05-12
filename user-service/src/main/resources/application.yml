@@ -38,6 +38,8 @@ eureka:
     register-with-eureka: true
 
 user:
+  login_name: xl1
+  login_pass: xldz-123
   api_gateway_surface: api_gateway_surface
   8008_surface: 8008_surface
   pass:

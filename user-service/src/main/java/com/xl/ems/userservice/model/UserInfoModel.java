@@ -1,5 +1,7 @@
 package com.xl.ems.userservice.model;
 
+import com.xl.ems.userservice.bean.XlAccountBean;
+
 public class UserInfoModel {
     private Integer id;
 
@@ -60,4 +62,5 @@ public class UserInfoModel {
     public void setToken(String token) {
         this.token = token == null ? null : token.trim();
     }
+
 }

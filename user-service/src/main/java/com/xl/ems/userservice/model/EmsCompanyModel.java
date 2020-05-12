@@ -40,4 +40,23 @@ public class EmsCompanyModel {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof EmsCompanyModel){
+          EmsCompanyModel model = (EmsCompanyModel) obj;
+          //因为企业名字有可能改变,所以只要UID一样就认为是一个企业
+          if (this.uid.equals(model.getUid())){
+              return true;
+          }
+        }
+
+        return false;
+    }
 }

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.userservice.mapper.XlGroupanalogModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.userservice.model.XlGroupanalogModel" >
+    <id column="analogid" property="analogid" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="VARCHAR" />
+    <result column="analogname" property="analogname" jdbcType="VARCHAR" />
+    <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+    <result column="sym" property="sym" jdbcType="VARCHAR" />
+    <result column="coe" property="coe" jdbcType="VARCHAR" />
+    <result column="sdt" property="sdt" jdbcType="VARCHAR" />
+    <result column="edt" property="edt" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="dataid" property="dataid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    analogid, groupid, analogname, groupname, sym, coe, sdt, edt,uid,dataid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from xl_groupanalog
+    where analogid = #{analogid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xl_groupanalog
+    where analogid = #{analogid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.userservice.model.XlGroupanalogModel" >
+    insert into xl_groupanalog (analogid, groupid, analogname, 
+      groupname, sym, coe, 
+      sdt, edt,uid,dataid)
+    values (#{analogid,jdbcType=INTEGER}, #{groupid,jdbcType=VARCHAR}, #{analogname,jdbcType=VARCHAR}, 
+      #{groupname,jdbcType=VARCHAR}, #{sym,jdbcType=VARCHAR}, #{coe,jdbcType=VARCHAR}, 
+      #{sdt,jdbcType=VARCHAR}, #{edt,jdbcType=VARCHAR},#{uid,jdbcType=INTEGER},#{dataid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.userservice.model.XlGroupanalogModel" >
+    insert into xl_groupanalog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="analogid != null" >
+        analogid,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="analogname != null" >
+        analogname,
+      </if>
+      <if test="groupname != null" >
+        groupname,
+      </if>
+      <if test="sym != null" >
+        sym,
+      </if>
+      <if test="coe != null" >
+        coe,
+      </if>
+      <if test="sdt != null" >
+        sdt,
+      </if>
+      <if test="edt != null" >
+        edt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="analogid != null" >
+        #{analogid,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="analogname != null" >
+        #{analogname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="sym != null" >
+        #{sym,jdbcType=VARCHAR},
+      </if>
+      <if test="coe != null" >
+        #{coe,jdbcType=VARCHAR},
+      </if>
+      <if test="sdt != null" >
+        #{sdt,jdbcType=VARCHAR},
+      </if>
+      <if test="edt != null" >
+        #{edt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.userservice.model.XlGroupanalogModel" >
+    update xl_groupanalog
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="analogname != null" >
+        analogname = #{analogname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        groupname = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="sym != null" >
+        sym = #{sym,jdbcType=VARCHAR},
+      </if>
+      <if test="coe != null" >
+        coe = #{coe,jdbcType=VARCHAR},
+      </if>
+      <if test="sdt != null" >
+        sdt = #{sdt,jdbcType=VARCHAR},
+      </if>
+      <if test="edt != null" >
+        edt = #{edt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where analogid = #{analogid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.userservice.model.XlGroupanalogModel" >
+    update xl_groupanalog
+    set groupid = #{groupid,jdbcType=VARCHAR},
+      analogname = #{analogname,jdbcType=VARCHAR},
+      groupname = #{groupname,jdbcType=VARCHAR},
+      sym = #{sym,jdbcType=VARCHAR},
+      coe = #{coe,jdbcType=VARCHAR},
+      sdt = #{sdt,jdbcType=VARCHAR},
+      edt = #{edt,jdbcType=VARCHAR}
+    where analogid = #{analogid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByGroupIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xl_groupanalog where groupid in
+    <foreach collection="list" index="index" open="(" separator="," close=")" item="item">
+      #{item}
+    </foreach>
+  </select>
+
+  <delete id="deleteByGroupIds" parameterType="java.util.List">
+    delete from xl_groupanalog where groupid in
+    <foreach collection="list" index="index" open="(" separator="," close=")" item="item">
+      #{item}
+    </foreach>
+  </delete>
+
+  <insert id="insertBantch" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into xl_groupanalog  (analogid, groupid, analogname,
+      groupname, sym, coe,
+      sdt, edt) values
+    <foreach collection="list" item="item" separator="," index="index">
+      (
+      #{item.analogid,jdbcType=INTEGER}, #{item.groupid,jdbcType=VARCHAR}, #{item.analogname,jdbcType=VARCHAR},
+      #{item.groupname,jdbcType=VARCHAR}, #{item.sym,jdbcType=VARCHAR}, #{item.coe,jdbcType=VARCHAR},
+      #{item.sdt,jdbcType=VARCHAR}, #{item.edt,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+  <select id="getAids" parameterType="java.util.List" resultType="java.lang.Integer">
+    select distinct analogid from xl_groupanalog where groupid in
+    <foreach collection="list" index="index" separator="," item="item" close=")" open="(">
+      #{item}
+    </foreach>
+  </select>
+
+  <select id="getMetersTotal" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+      from
+      xl_groupanalog where groupid in
+      (select groupid  from  xl_unitcalcgroup where uid = #{uid,jdbcType=INTEGER} and dataid = #{dataid,jdbcType=VARCHAR})
+  </select>
+
+  <select id="getFenLuMetersTotal" resultType="java.lang.Integer">
+    select  count(DISTINCT xga.analogid) from xl_groupanalog xga
+    where xga.groupid in (SELECT xug.groupid  from  xl_unitcalcgroup xug where xug.uid in (SELECT xu.uid  from xl_unitlink xu where xu.parentunitid in
+    (select xu1.`uid` from xl_unitlink xu1 where xu1.parentunitid=#{uid,jdbcType=INTEGER} or xu1.uid=#{uid,jdbcType=INTEGER})) and xug.dataid = #{dataid,jdbcType=VARCHAR})
+  </select>
+
+  <select id="getGroupAnalogbyUidDataid" parameterType="java.util.Map" statementType="CALLABLE" resultMap="BaseResultMap">
+    {call get_group_analog_by_uiddataid
+     (#{uid,mode=IN,jdbcType=INTEGER},
+     #{dataid,mode=IN,jdbcType=INTEGER})
+     }
+  </select>
+
+  <update id="banthUpdateByUidDataid" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";" open="" close="">
+      update xl_groupanalog
+      set
+      dataid = #{item.dataid,jdbcType=INTEGER},
+      uid= #{item.uid,jdbcType=INTEGER}
+      where analogid = #{item.analogid} and groupid= #{item.groupid}
+    </foreach>
+  </update>
+  
+  <select id="selectGroupAnalog" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from xl_groupanalog where groupid in (select groupid from xl_unitcalcgroup where uid=#{uid,jdbcType=INTEGER} and dataid=#{dataid,jdbcType=INTEGER})
+  </select>
+</mapper>

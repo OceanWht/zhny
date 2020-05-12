@@ -17,11 +17,19 @@ public class UserServiceRunner implements ApplicationRunner {
         syncCompanyData();
     }
 
+    /**
+     * 获取企业信息，同步企业档案，账户信息等
+     */
     private void syncCompanyData() {
         new Thread(){
             @Override
             public void run() {
-                syncCompanyDataService.GetPlatFormCompany();
+                //企业档案
+                syncCompanyDataService.getPlatFormCompany();
+                //公开账户
+                syncCompanyDataService.getAccountFeePublic();
+                //所有的能源类型
+                syncCompanyDataService.getAllDataCode();
             }
         }.start();
     }

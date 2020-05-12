@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.userservice.mapper.XlAidDidModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.userservice.model.XlAidDidModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="did" property="did" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="dataid" property="uid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, aid, did, uid,dataid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from xl_aid_did
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xl_aid_did
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.userservice.model.XlAidDidModel" >
+    insert into xl_aid_did (id, aid, did, 
+      uid)
+    values (#{id,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.userservice.model.XlAidDidModel" >
+    insert into xl_aid_did
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.userservice.model.XlAidDidModel" >
+    update xl_aid_did
+    <set >
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.userservice.model.XlAidDidModel" >
+    update xl_aid_did
+    set aid = #{aid,jdbcType=INTEGER},
+      did = #{did,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from xl_aid_did where uid=#{uid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="bantchDelete" parameterType="java.lang.Integer">
+    delete from xl_aid_did where uid=#{uid,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="bantchInsert" parameterType="java.util.List">
+    insert into xl_aid_did (aid, did,
+      uid)
+    values
+    <foreach collection="list" item="item" separator="," index="index">
+      (
+      #{item.aid},
+      #{item.did},
+      #{item.uid}
+      )
+    </foreach>
+  </insert>
+
+  <select id="getByUidDataid" statementType="CALLABLE" resultMap="BaseResultMap" parameterType="java.util.Map">
+    {call get_aid_did_by_uiddataid
+    (
+      #{uid,mode=IN,jdbcType=INTEGER},
+      #{dataid,mode=IN,jdbcType=INTEGER}
+    )}
+  </select>
+
+  <select id="getByUidDataid2" statementType="CALLABLE" resultMap="BaseResultMap" parameterType="java.util.Map">
+    {call get_aid_did_by_uiddataid2
+    (
+      #{uid,mode=IN,jdbcType=INTEGER},
+      #{dataid,mode=IN,jdbcType=INTEGER}
+    )}
+  </select>
+
+  <select id="selectByUidDataid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select *  from xl_aid_did where uid=#{uid,jdbcType=INTEGER} and dataid=#{dataid,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateBanthAidDid" parameterType="java.util.List">
+    <foreach collection="list" close="" open="" separator=";" item="item" index="index">
+      update xl_aid_did set dataid=#{item.dataid} where aid=#{item.aid} and did=#{item.did} and uid=#{item.uid}
+    </foreach>
+  </update>
+</mapper>

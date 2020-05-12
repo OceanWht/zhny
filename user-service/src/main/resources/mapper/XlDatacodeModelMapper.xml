@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.userservice.mapper.XlDatacodeModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.userservice.model.XlDatacodeModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dataid" property="dataid" jdbcType="INTEGER" />
+    <result column="dataname" property="dataname" jdbcType="VARCHAR" />
+    <result column="datacode" property="datacode" jdbcType="VARCHAR" />
+    <result column="pdata" property="pdata" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dataid, dataname, datacode, pdata
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from xl_datacode
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xl_datacode
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.userservice.model.XlDatacodeModel" >
+    insert into xl_datacode (id, dataid, dataname, 
+      datacode, pdata)
+    values (#{id,jdbcType=INTEGER}, #{dataid,jdbcType=INTEGER}, #{dataname,jdbcType=VARCHAR}, 
+      #{datacode,jdbcType=VARCHAR}, #{pdata,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.userservice.model.XlDatacodeModel" >
+    insert into xl_datacode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataid != null" >
+        dataid,
+      </if>
+      <if test="dataname != null" >
+        dataname,
+      </if>
+      <if test="datacode != null" >
+        datacode,
+      </if>
+      <if test="pdata != null" >
+        pdata,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataid != null" >
+        #{dataid,jdbcType=INTEGER},
+      </if>
+      <if test="dataname != null" >
+        #{dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="pdata != null" >
+        #{pdata,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.userservice.model.XlDatacodeModel" >
+    update xl_datacode
+    <set >
+      <if test="dataid != null" >
+        dataid = #{dataid,jdbcType=INTEGER},
+      </if>
+      <if test="dataname != null" >
+        dataname = #{dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        datacode = #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="pdata != null" >
+        pdata = #{pdata,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.userservice.model.XlDatacodeModel" >
+    update xl_datacode
+    set dataid = #{dataid,jdbcType=INTEGER},
+      dataname = #{dataname,jdbcType=VARCHAR},
+      datacode = #{datacode,jdbcType=VARCHAR},
+      pdata = #{pdata,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getAllDataCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xl_datacode
+  </select>
+
+  <select id="getAllDataCode2" resultType="java.lang.String">
+    select
+    `dataid`
+    from xl_datacode
+  </select>
+</mapper>
