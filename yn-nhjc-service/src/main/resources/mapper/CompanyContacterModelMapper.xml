@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.CompanyContacterModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.CompanyContacterModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="contacterName" property="contactername" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, contacterName, phone, 
+    dept, job, fax, email, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_company_contacter
+  </select>
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_company_contacter
+    where enterprisecode = #{enterpriseCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_company_contacter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_company_contacter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.CompanyContacterModel" >
+    insert into yn_nhjc_company_contacter (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      contacterName, phone, dept, 
+      job, fax, email, backup_field_1, 
+      backup_field_2, backup_field_3)
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{contactername,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{backupField1,jdbcType=VARCHAR}, 
+      #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.CompanyContacterModel" >
+    insert into yn_nhjc_company_contacter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="contactername != null" >
+        contacterName,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="dept != null" >
+        dept,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactername != null" >
+        #{contactername,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.CompanyContacterModel" >
+    update yn_nhjc_company_contacter
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactername != null" >
+        contacterName = #{contactername,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        dept = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.CompanyContacterModel" >
+    update yn_nhjc_company_contacter
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      contacterName = #{contactername,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      dept = #{dept,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

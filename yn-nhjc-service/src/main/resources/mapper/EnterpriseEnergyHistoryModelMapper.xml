@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.EnterpriseEnergyHistoryModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.EnterpriseEnergyHistoryModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="dataCode" property="datacode" jdbcType="VARCHAR" />
+    <result column="dataValue" property="datavalue" jdbcType="VARCHAR" />
+    <result column="convertRation" property="convertration" jdbcType="VARCHAR" />
+    <result column="valid" property="valid" jdbcType="VARCHAR" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="inputType" property="inputtype" jdbcType="VARCHAR" />
+    <result column="statType" property="stattype" jdbcType="VARCHAR" />
+    <result column="statDate" property="statdate" jdbcType="VARCHAR" />
+    <result column="uploadDate" property="uploaddate" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, dataCode, dataValue, 
+    convertRation, valid, scope, inputType, statType, statDate, uploadDate, backup_field_1, 
+    backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_enterprise_energy_history
+    where enterpriseCode = #{enterpriseCode, jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_enterprise_energy_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_enterprise_energy_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.EnterpriseEnergyHistoryModel" >
+    insert into yn_nhjc_enterprise_energy_history (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      dataCode, dataValue, convertRation, 
+      valid, scope, inputType, 
+      statType, statDate, uploadDate, 
+      backup_field_1, backup_field_2, backup_field_3
+      )
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{datacode,jdbcType=VARCHAR}, #{datavalue,jdbcType=VARCHAR}, #{convertration,jdbcType=VARCHAR}, 
+      #{valid,jdbcType=VARCHAR}, #{scope,jdbcType=VARCHAR}, #{inputtype,jdbcType=VARCHAR}, 
+      #{stattype,jdbcType=VARCHAR}, #{statdate,jdbcType=VARCHAR}, #{uploaddate,jdbcType=VARCHAR}, 
+      #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.EnterpriseEnergyHistoryModel" >
+    insert into yn_nhjc_enterprise_energy_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="datacode != null" >
+        dataCode,
+      </if>
+      <if test="datavalue != null" >
+        dataValue,
+      </if>
+      <if test="convertration != null" >
+        convertRation,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+      <if test="inputtype != null" >
+        inputType,
+      </if>
+      <if test="stattype != null" >
+        statType,
+      </if>
+      <if test="statdate != null" >
+        statDate,
+      </if>
+      <if test="uploaddate != null" >
+        uploadDate,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="datavalue != null" >
+        #{datavalue,jdbcType=VARCHAR},
+      </if>
+      <if test="convertration != null" >
+        #{convertration,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtype != null" >
+        #{inputtype,jdbcType=VARCHAR},
+      </if>
+      <if test="stattype != null" >
+        #{stattype,jdbcType=VARCHAR},
+      </if>
+      <if test="statdate != null" >
+        #{statdate,jdbcType=VARCHAR},
+      </if>
+      <if test="uploaddate != null" >
+        #{uploaddate,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.EnterpriseEnergyHistoryModel" >
+    update yn_nhjc_enterprise_energy_history
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        dataCode = #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="datavalue != null" >
+        dataValue = #{datavalue,jdbcType=VARCHAR},
+      </if>
+      <if test="convertration != null" >
+        convertRation = #{convertration,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtype != null" >
+        inputType = #{inputtype,jdbcType=VARCHAR},
+      </if>
+      <if test="stattype != null" >
+        statType = #{stattype,jdbcType=VARCHAR},
+      </if>
+      <if test="statdate != null" >
+        statDate = #{statdate,jdbcType=VARCHAR},
+      </if>
+      <if test="uploaddate != null" >
+        uploadDate = #{uploaddate,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.EnterpriseEnergyHistoryModel" >
+    update yn_nhjc_enterprise_energy_history
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      dataCode = #{datacode,jdbcType=VARCHAR},
+      dataValue = #{datavalue,jdbcType=VARCHAR},
+      convertRation = #{convertration,jdbcType=VARCHAR},
+      valid = #{valid,jdbcType=VARCHAR},
+      scope = #{scope,jdbcType=VARCHAR},
+      inputType = #{inputtype,jdbcType=VARCHAR},
+      statType = #{stattype,jdbcType=VARCHAR},
+      statDate = #{statdate,jdbcType=VARCHAR},
+      uploadDate = #{uploaddate,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

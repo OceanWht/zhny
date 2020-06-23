@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.UserInfoModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.UserInfoModel" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pass" property="pass" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, name, pass, uid, userid, token
+  </sql>
+  <select id="getToken" parameterType="java.lang.String" resultType="java.lang.String">
+    select token from yn_nhjc_unseinfo where uid = (select ynur.uid from yn_nhjc_uid_relationship  ynur where ynur.enterprise_code= #{enterpriseCode,jdbcType=VARCHAR});
+  </select>
+  <select id="selectByUserId"  resultMap="BaseResultMap"   parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_unseinfo
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_unseinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_unseinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.UserInfoModel" >
+    insert into yn_nhjc_unseinfo (Id, name, pass, 
+      uid, userid, token)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.UserInfoModel" >
+    insert into yn_nhjc_unseinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pass != null" >
+        pass,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.UserInfoModel" >
+    update yn_nhjc_unseinfo
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.UserInfoModel" >
+    update yn_nhjc_unseinfo
+    set name = #{name,jdbcType=VARCHAR},
+      pass = #{pass,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

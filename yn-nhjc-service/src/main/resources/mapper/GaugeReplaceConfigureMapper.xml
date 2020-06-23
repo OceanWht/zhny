@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.GaugeReplaceConfigureMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.GaugeReplaceConfigure" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="replacedSerno" property="replacedserno" jdbcType="VARCHAR" />
+    <result column="replacedManageNo" property="replacedmanageno" jdbcType="VARCHAR" />
+    <result column="replacedBarCode" property="replacedbarcode" jdbcType="VARCHAR" />
+    <result column="installSerNo" property="installserno" jdbcType="VARCHAR" />
+    <result column="installManageNo" property="installmanageno" jdbcType="VARCHAR" />
+    <result column="installBarCode" property="installbarcode" jdbcType="VARCHAR" />
+    <result column="installTime" property="installtime" jdbcType="TIMESTAMP" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, replacedSerno, replacedManageNo, 
+    replacedBarCode, installSerNo, installManageNo, installBarCode, installTime, backup_field_1, 
+    backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_gauge_replace_configure
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据社会信用统一代码查询所有列表 -->
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+  	from yn_nhjc_gauge_replace_configure
+  	where enterpriseCode = #{enterpriseCode, jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_gauge_replace_configure
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.GaugeReplaceConfigure" >
+    insert into yn_nhjc_gauge_replace_configure (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      replacedSerno, replacedManageNo, replacedBarCode, 
+      installSerNo, installManageNo, installBarCode, 
+      installTime, backup_field_1, backup_field_2, 
+      backup_field_3)
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{replacedserno,jdbcType=VARCHAR}, #{replacedmanageno,jdbcType=VARCHAR}, #{replacedbarcode,jdbcType=VARCHAR}, 
+      #{installserno,jdbcType=VARCHAR}, #{installmanageno,jdbcType=VARCHAR}, #{installbarcode,jdbcType=VARCHAR}, 
+      #{installtime,jdbcType=TIMESTAMP}, #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, 
+      #{backupField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.GaugeReplaceConfigure" >
+    insert into yn_nhjc_gauge_replace_configure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="replacedserno != null" >
+        replacedSerno,
+      </if>
+      <if test="replacedmanageno != null" >
+        replacedManageNo,
+      </if>
+      <if test="replacedbarcode != null" >
+        replacedBarCode,
+      </if>
+      <if test="installserno != null" >
+        installSerNo,
+      </if>
+      <if test="installmanageno != null" >
+        installManageNo,
+      </if>
+      <if test="installbarcode != null" >
+        installBarCode,
+      </if>
+      <if test="installtime != null" >
+        installTime,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedserno != null" >
+        #{replacedserno,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedmanageno != null" >
+        #{replacedmanageno,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedbarcode != null" >
+        #{replacedbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="installserno != null" >
+        #{installserno,jdbcType=VARCHAR},
+      </if>
+      <if test="installmanageno != null" >
+        #{installmanageno,jdbcType=VARCHAR},
+      </if>
+      <if test="installbarcode != null" >
+        #{installbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="installtime != null" >
+        #{installtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.GaugeReplaceConfigure" >
+    update yn_nhjc_gauge_replace_configure
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedserno != null" >
+        replacedSerno = #{replacedserno,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedmanageno != null" >
+        replacedManageNo = #{replacedmanageno,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedbarcode != null" >
+        replacedBarCode = #{replacedbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="installserno != null" >
+        installSerNo = #{installserno,jdbcType=VARCHAR},
+      </if>
+      <if test="installmanageno != null" >
+        installManageNo = #{installmanageno,jdbcType=VARCHAR},
+      </if>
+      <if test="installbarcode != null" >
+        installBarCode = #{installbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="installtime != null" >
+        installTime = #{installtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.GaugeReplaceConfigure" >
+    update yn_nhjc_gauge_replace_configure
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      replacedSerno = #{replacedserno,jdbcType=VARCHAR},
+      replacedManageNo = #{replacedmanageno,jdbcType=VARCHAR},
+      replacedBarCode = #{replacedbarcode,jdbcType=VARCHAR},
+      installSerNo = #{installserno,jdbcType=VARCHAR},
+      installManageNo = #{installmanageno,jdbcType=VARCHAR},
+      installBarCode = #{installbarcode,jdbcType=VARCHAR},
+      installTime = #{installtime,jdbcType=TIMESTAMP},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </update>
+</mapper>

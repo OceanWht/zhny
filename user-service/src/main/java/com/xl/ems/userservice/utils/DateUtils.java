@@ -37,6 +37,12 @@ public class DateUtils {
         return getDateString(calendar);
     }
 
+    public static String getDay(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        return getDateString(calendar);
+    }
+
     /**
      * 获取当前天的前一天
      * @return
@@ -173,6 +179,11 @@ public class DateUtils {
 
     private static String getDateString(Calendar calendar) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return simpleDateFormat.format(calendar.getTime());
+    }
+
+    private static String getDateTimeString(Calendar calendar) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return simpleDateFormat.format(calendar.getTime());
     }
 

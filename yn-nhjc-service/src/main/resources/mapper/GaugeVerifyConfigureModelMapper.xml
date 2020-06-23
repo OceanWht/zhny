@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.GaugeVerifyConfigureModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.GaugeVerifyConfigureModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="serNo" property="serno" jdbcType="VARCHAR" />
+    <result column="manageNo" property="manageno" jdbcType="VARCHAR" />
+    <result column="barCode" property="barcode" jdbcType="VARCHAR" />
+    <result column="verifyOrg" property="verifyorg" jdbcType="VARCHAR" />
+    <result column="verifyTime" property="verifytime" jdbcType="TIMESTAMP" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, serNo, manageNo, barCode, 
+    verifyOrg, verifyTime, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_gauge_verify_configure
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据社会信用统一代码查询所有列表 -->
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+  	from yn_nhjc_gauge_verify_configure
+  	where enterpriseCode = #{enterpriseCode, jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_gauge_verify_configure
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.GaugeVerifyConfigureModel" >
+    insert into yn_nhjc_gauge_verify_configure (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      serNo, manageNo, barCode, 
+      verifyOrg, verifyTime, backup_field_1, 
+      backup_field_2, backup_field_3)
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{serno,jdbcType=VARCHAR}, #{manageno,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, 
+      #{verifyorg,jdbcType=VARCHAR}, #{verifytime,jdbcType=TIMESTAMP}, #{backupField1,jdbcType=VARCHAR}, 
+      #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.GaugeVerifyConfigureModel" >
+    insert into yn_nhjc_gauge_verify_configure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="serno != null" >
+        serNo,
+      </if>
+      <if test="manageno != null" >
+        manageNo,
+      </if>
+      <if test="barcode != null" >
+        barCode,
+      </if>
+      <if test="verifyorg != null" >
+        verifyOrg,
+      </if>
+      <if test="verifytime != null" >
+        verifyTime,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="serno != null" >
+        #{serno,jdbcType=VARCHAR},
+      </if>
+      <if test="manageno != null" >
+        #{manageno,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyorg != null" >
+        #{verifyorg,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.GaugeVerifyConfigureModel" >
+    update yn_nhjc_gauge_verify_configure
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="serno != null" >
+        serNo = #{serno,jdbcType=VARCHAR},
+      </if>
+      <if test="manageno != null" >
+        manageNo = #{manageno,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barCode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyorg != null" >
+        verifyOrg = #{verifyorg,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        verifyTime = #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.GaugeVerifyConfigureModel" >
+    update yn_nhjc_gauge_verify_configure
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      serNo = #{serno,jdbcType=VARCHAR},
+      manageNo = #{manageno,jdbcType=VARCHAR},
+      barCode = #{barcode,jdbcType=VARCHAR},
+      verifyOrg = #{verifyorg,jdbcType=VARCHAR},
+      verifyTime = #{verifytime,jdbcType=TIMESTAMP},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </update>
+</mapper>

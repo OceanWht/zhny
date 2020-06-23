@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.SysEnergyModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.SysEnergyModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="energyOffice" property="energyoffice" jdbcType="VARCHAR" />
+    <result column="energyOfficial" property="energyofficial" jdbcType="VARCHAR" />
+    <result column="energyOfficialPosition" property="energyofficialposition" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, enterpriseCode, dataIndex, remark, energyOffice, energyOfficial, 
+    energyOfficialPosition, phone, fax, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_sys_energy
+    where enterprisecode = #{enterpriseCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_sys_energy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_sys_energy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.SysEnergyModel" >
+    insert into yn_nhjc_sys_energy (id, regVersion, dicVersion, 
+      enterpriseCode, dataIndex, remark, 
+      energyOffice, energyOfficial, energyOfficialPosition, 
+      phone, fax, backup_field_1, 
+      backup_field_2, backup_field_3)
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{enterprisecode,jdbcType=VARCHAR}, #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{energyoffice,jdbcType=VARCHAR}, #{energyofficial,jdbcType=VARCHAR}, #{energyofficialposition,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{backupField1,jdbcType=VARCHAR}, 
+      #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.SysEnergyModel" >
+    insert into yn_nhjc_sys_energy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="energyoffice != null" >
+        energyOffice,
+      </if>
+      <if test="energyofficial != null" >
+        energyOfficial,
+      </if>
+      <if test="energyofficialposition != null" >
+        energyOfficialPosition,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="energyoffice != null" >
+        #{energyoffice,jdbcType=VARCHAR},
+      </if>
+      <if test="energyofficial != null" >
+        #{energyofficial,jdbcType=VARCHAR},
+      </if>
+      <if test="energyofficialposition != null" >
+        #{energyofficialposition,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.SysEnergyModel" >
+    update yn_nhjc_sys_energy
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="energyoffice != null" >
+        energyOffice = #{energyoffice,jdbcType=VARCHAR},
+      </if>
+      <if test="energyofficial != null" >
+        energyOfficial = #{energyofficial,jdbcType=VARCHAR},
+      </if>
+      <if test="energyofficialposition != null" >
+        energyOfficialPosition = #{energyofficialposition,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.SysEnergyModel" >
+    update yn_nhjc_sys_energy
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      energyOffice = #{energyoffice,jdbcType=VARCHAR},
+      energyOfficial = #{energyofficial,jdbcType=VARCHAR},
+      energyOfficialPosition = #{energyofficialposition,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

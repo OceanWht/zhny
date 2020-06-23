@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.EnergyConservationModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.EnergyConservationModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="projectname" property="projectname" jdbcType="VARCHAR" />
+    <result column="projecttype" property="projecttype" jdbcType="VARCHAR" />
+    <result column="improveMeasure" property="improvemeasure" jdbcType="VARCHAR" />
+    <result column="investmentAmount" property="investmentamount" jdbcType="VARCHAR" />
+    <result column="projectTimeline" property="projecttimeline" jdbcType="VARCHAR" />
+    <result column="energySavingAmount" property="energysavingamount" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, projectname, projecttype, 
+    improveMeasure, investmentAmount, projectTimeline, energySavingAmount, backup_field_1, 
+    backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_energy_conservation
+    where enterpriseCode = #{enterpriseCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_energy_conservation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yn_nhjc_energy_conservation
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.EnergyConservationModel" >
+    insert into yn_nhjc_energy_conservation (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      projectname, projecttype, improveMeasure, 
+      investmentAmount, projectTimeline, energySavingAmount, 
+      backup_field_1, backup_field_2, backup_field_3
+      )
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{projectname,jdbcType=VARCHAR}, #{projecttype,jdbcType=VARCHAR}, #{improvemeasure,jdbcType=VARCHAR}, 
+      #{investmentamount,jdbcType=VARCHAR}, #{projecttimeline,jdbcType=VARCHAR}, #{energysavingamount,jdbcType=VARCHAR}, 
+      #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.EnergyConservationModel" >
+    insert into yn_nhjc_energy_conservation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="projectname != null" >
+        projectname,
+      </if>
+      <if test="projecttype != null" >
+        projecttype,
+      </if>
+      <if test="improvemeasure != null" >
+        improveMeasure,
+      </if>
+      <if test="investmentamount != null" >
+        investmentAmount,
+      </if>
+      <if test="projecttimeline != null" >
+        projectTimeline,
+      </if>
+      <if test="energysavingamount != null" >
+        energySavingAmount,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttype != null" >
+        #{projecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="improvemeasure != null" >
+        #{improvemeasure,jdbcType=VARCHAR},
+      </if>
+      <if test="investmentamount != null" >
+        #{investmentamount,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttimeline != null" >
+        #{projecttimeline,jdbcType=VARCHAR},
+      </if>
+      <if test="energysavingamount != null" >
+        #{energysavingamount,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.EnergyConservationModel" >
+    update yn_nhjc_energy_conservation
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        projectname = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttype != null" >
+        projecttype = #{projecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="improvemeasure != null" >
+        improveMeasure = #{improvemeasure,jdbcType=VARCHAR},
+      </if>
+      <if test="investmentamount != null" >
+        investmentAmount = #{investmentamount,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttimeline != null" >
+        projectTimeline = #{projecttimeline,jdbcType=VARCHAR},
+      </if>
+      <if test="energysavingamount != null" >
+        energySavingAmount = #{energysavingamount,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.EnergyConservationModel" >
+    update yn_nhjc_energy_conservation
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      projectname = #{projectname,jdbcType=VARCHAR},
+      projecttype = #{projecttype,jdbcType=VARCHAR},
+      improveMeasure = #{improvemeasure,jdbcType=VARCHAR},
+      investmentAmount = #{investmentamount,jdbcType=VARCHAR},
+      projectTimeline = #{projecttimeline,jdbcType=VARCHAR},
+      energySavingAmount = #{energysavingamount,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

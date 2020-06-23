@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.GaugeConfigureModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.GaugeConfigureModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="meterName" property="metername" jdbcType="VARCHAR" />
+    <result column="meterType" property="metertype" jdbcType="VARCHAR" />
+    <result column="meterLevel" property="meterlevel" jdbcType="VARCHAR" />
+    <result column="paramsType" property="paramsType" jdbcType="VARCHAR" />
+    <result column="params" property="params" jdbcType="VARCHAR" />
+    <result column="dataCode" property="datacode" jdbcType="VARCHAR" />
+    <result column="reportArithmetic" property="reportarithmetic" jdbcType="VARCHAR" />
+    <result column="reportRatio" property="reportratio" jdbcType="VARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="precisionLevel" property="precisionlevel" jdbcType="VARCHAR" />
+    <result column="ranges" property="ranges" jdbcType="VARCHAR" />
+    <result column="manageNo" property="manageno" jdbcType="VARCHAR" />
+    <result column="alignState" property="alignstate" jdbcType="VARCHAR" />
+    <result column="alignCycle" property="aligncycle" jdbcType="VARCHAR" />
+    <result column="lastAlignDate" property="lastaligndate" jdbcType="TIMESTAMP" />
+    <result column="nextAlignDate" property="nextaligndate" jdbcType="TIMESTAMP" />
+    <result column="alignOrg" property="alignorg" jdbcType="VARCHAR" />
+    <result column="unAlignReason" property="unalignreason" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="installer" property="installer" jdbcType="VARCHAR" />
+    <result column="installTime" property="installtime" jdbcType="TIMESTAMP" />
+    <result column="linkSys" property="linksys" jdbcType="VARCHAR" />
+    <result column="currentState" property="currentstate" jdbcType="VARCHAR" />
+    <result column="stateChangeTime" property="statechangetime" jdbcType="TIMESTAMP" />
+    <result column="serNo" property="serno" jdbcType="VARCHAR" />
+    <result column="barCode" property="barcode" jdbcType="VARCHAR" />
+    <result column="replacedSerno" property="replacedserno" jdbcType="VARCHAR" />
+    <result column="replacedBarCode" property="replacedbarcode" jdbcType="VARCHAR" />
+    <result column="installSerNo" property="installserno" jdbcType="VARCHAR" />
+    <result column="installManageNo" property="installmanageno" jdbcType="VARCHAR" />
+    <result column="installBarCode" property="installbarcode" jdbcType="VARCHAR" />
+    <result column="verifyOrg" property="verifyorg" jdbcType="VARCHAR" />
+    <result column="verifyTime" property="verifytime" jdbcType="TIMESTAMP" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, meterName, meterType, 
+    meterLevel, paramsType, params, dataCode, reportArithmetic, reportRatio, manufacturer, model, 
+    precisionLevel, ranges, manageNo, alignState, alignCycle, lastAlignDate, nextAlignDate, 
+    alignOrg, unAlignReason, location, installer, installTime, linkSys, currentState, 
+    stateChangeTime, serNo, barCode, replacedSerno, replacedBarCode, installSerNo, installManageNo, 
+    installBarCode, verifyOrg, verifyTime, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_gauge_configure
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据社会信用统一代码查询所有列表 -->
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from yn_nhjc_gauge_configure
+  	where enterpriseCode = #{enterpriseCode, jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_gauge_configure
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.GaugeConfigureModel" >
+    insert into yn_nhjc_gauge_configure (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      meterName, meterType, meterLevel, paramsType, 
+      params, dataCode, reportArithmetic, 
+      reportRatio, manufacturer, model, 
+      precisionLevel, ranges, manageNo, 
+      alignState, alignCycle, lastAlignDate, 
+      nextAlignDate, alignOrg, unAlignReason, 
+      location, installer, installTime, 
+      linkSys, currentState, stateChangeTime, 
+      serNo, barCode, replacedSerno, 
+      replacedBarCode, installSerNo, installManageNo, 
+      installBarCode, verifyOrg, verifyTime, 
+      backup_field_1, backup_field_2, backup_field_3
+      )
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{metername,jdbcType=VARCHAR}, #{metertype,jdbcType=VARCHAR}, #{meterlevel,jdbcType=VARCHAR}, #{paramsType,jdbcType=VARCHAR}
+      #{params,jdbcType=VARCHAR}, #{datacode,jdbcType=VARCHAR}, #{reportarithmetic,jdbcType=VARCHAR}, 
+      #{reportratio,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
+      #{precisionlevel,jdbcType=VARCHAR}, #{ranges,jdbcType=VARCHAR}, #{manageno,jdbcType=VARCHAR}, 
+      #{alignstate,jdbcType=VARCHAR}, #{aligncycle,jdbcType=VARCHAR}, #{lastaligndate,jdbcType=TIMESTAMP}, 
+      #{nextaligndate,jdbcType=TIMESTAMP}, #{alignorg,jdbcType=VARCHAR}, #{unalignreason,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{installer,jdbcType=VARCHAR}, #{installtime,jdbcType=TIMESTAMP}, 
+      #{linksys,jdbcType=VARCHAR}, #{currentstate,jdbcType=VARCHAR}, #{statechangetime,jdbcType=TIMESTAMP}, 
+      #{serno,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{replacedserno,jdbcType=VARCHAR}, 
+      #{replacedbarcode,jdbcType=VARCHAR}, #{installserno,jdbcType=VARCHAR}, #{installmanageno,jdbcType=VARCHAR}, 
+      #{installbarcode,jdbcType=VARCHAR}, #{verifyorg,jdbcType=VARCHAR}, #{verifytime,jdbcType=TIMESTAMP}, 
+      #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.GaugeConfigureModel" >
+    insert into yn_nhjc_gauge_configure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="metername != null" >
+        meterName,
+      </if>
+      <if test="metertype != null" >
+        meterType,
+      </if>
+      <if test="meterlevel != null" >
+        meterLevel,
+      </if>
+      <if test="paramsType != null" >
+        paramsType,
+      </if>
+      <if test="params != null" >
+        params,
+      </if>
+      <if test="datacode != null" >
+        dataCode,
+      </if>
+      <if test="reportarithmetic != null" >
+        reportArithmetic,
+      </if>
+      <if test="reportratio != null" >
+        reportRatio,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="model != null" >
+        model,
+      </if>
+      <if test="precisionlevel != null" >
+        precisionLevel,
+      </if>
+      <if test="ranges != null" >
+        ranges,
+      </if>
+      <if test="manageno != null" >
+        manageNo,
+      </if>
+      <if test="alignstate != null" >
+        alignState,
+      </if>
+      <if test="aligncycle != null" >
+        alignCycle,
+      </if>
+      <if test="lastaligndate != null" >
+        lastAlignDate,
+      </if>
+      <if test="nextaligndate != null" >
+        nextAlignDate,
+      </if>
+      <if test="alignorg != null" >
+        alignOrg,
+      </if>
+      <if test="unalignreason != null" >
+        unAlignReason,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="installer != null" >
+        installer,
+      </if>
+      <if test="installtime != null" >
+        installTime,
+      </if>
+      <if test="linksys != null" >
+        linkSys,
+      </if>
+      <if test="currentstate != null" >
+        currentState,
+      </if>
+      <if test="statechangetime != null" >
+        stateChangeTime,
+      </if>
+      <if test="serno != null" >
+        serNo,
+      </if>
+      <if test="barcode != null" >
+        barCode,
+      </if>
+      <if test="replacedserno != null" >
+        replacedSerno,
+      </if>
+      <if test="replacedbarcode != null" >
+        replacedBarCode,
+      </if>
+      <if test="installserno != null" >
+        installSerNo,
+      </if>
+      <if test="installmanageno != null" >
+        installManageNo,
+      </if>
+      <if test="installbarcode != null" >
+        installBarCode,
+      </if>
+      <if test="verifyorg != null" >
+        verifyOrg,
+      </if>
+      <if test="verifytime != null" >
+        verifyTime,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="metername != null" >
+        #{metername,jdbcType=VARCHAR},
+      </if>
+      <if test="metertype != null" >
+        #{metertype,jdbcType=VARCHAR},
+      </if>
+      <if test="meterlevel != null" >
+        #{meterlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="paramsType != null" >
+        #{paramsType,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportarithmetic != null" >
+        #{reportarithmetic,jdbcType=VARCHAR},
+      </if>
+      <if test="reportratio != null" >
+        #{reportratio,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="precisionlevel != null" >
+        #{precisionlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ranges != null" >
+        #{ranges,jdbcType=VARCHAR},
+      </if>
+      <if test="manageno != null" >
+        #{manageno,jdbcType=VARCHAR},
+      </if>
+      <if test="alignstate != null" >
+        #{alignstate,jdbcType=VARCHAR},
+      </if>
+      <if test="aligncycle != null" >
+        #{aligncycle,jdbcType=VARCHAR},
+      </if>
+      <if test="lastaligndate != null" >
+        #{lastaligndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextaligndate != null" >
+        #{nextaligndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alignorg != null" >
+        #{alignorg,jdbcType=VARCHAR},
+      </if>
+      <if test="unalignreason != null" >
+        #{unalignreason,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="installer != null" >
+        #{installer,jdbcType=VARCHAR},
+      </if>
+      <if test="installtime != null" >
+        #{installtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linksys != null" >
+        #{linksys,jdbcType=VARCHAR},
+      </if>
+      <if test="currentstate != null" >
+        #{currentstate,jdbcType=VARCHAR},
+      </if>
+      <if test="statechangetime != null" >
+        #{statechangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serno != null" >
+        #{serno,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedserno != null" >
+        #{replacedserno,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedbarcode != null" >
+        #{replacedbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="installserno != null" >
+        #{installserno,jdbcType=VARCHAR},
+      </if>
+      <if test="installmanageno != null" >
+        #{installmanageno,jdbcType=VARCHAR},
+      </if>
+      <if test="installbarcode != null" >
+        #{installbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyorg != null" >
+        #{verifyorg,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.GaugeConfigureModel" >
+    update yn_nhjc_gauge_configure
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="metername != null" >
+        meterName = #{metername,jdbcType=VARCHAR},
+      </if>
+      <if test="metertype != null" >
+        meterType = #{metertype,jdbcType=VARCHAR},
+      </if>
+      <if test="meterlevel != null" >
+        meterLevel = #{meterlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="paramsType != null" >
+        paramsType = #{paramsType,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        dataCode = #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportarithmetic != null" >
+        reportArithmetic = #{reportarithmetic,jdbcType=VARCHAR},
+      </if>
+      <if test="reportratio != null" >
+        reportRatio = #{reportratio,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="precisionlevel != null" >
+        precisionLevel = #{precisionlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ranges != null" >
+        ranges = #{ranges,jdbcType=VARCHAR},
+      </if>
+      <if test="manageno != null" >
+        manageNo = #{manageno,jdbcType=VARCHAR},
+      </if>
+      <if test="alignstate != null" >
+        alignState = #{alignstate,jdbcType=VARCHAR},
+      </if>
+      <if test="aligncycle != null" >
+        alignCycle = #{aligncycle,jdbcType=VARCHAR},
+      </if>
+      <if test="lastaligndate != null" >
+        lastAlignDate = #{lastaligndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextaligndate != null" >
+        nextAlignDate = #{nextaligndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alignorg != null" >
+        alignOrg = #{alignorg,jdbcType=VARCHAR},
+      </if>
+      <if test="unalignreason != null" >
+        unAlignReason = #{unalignreason,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="installer != null" >
+        installer = #{installer,jdbcType=VARCHAR},
+      </if>
+      <if test="installtime != null" >
+        installTime = #{installtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linksys != null" >
+        linkSys = #{linksys,jdbcType=VARCHAR},
+      </if>
+      <if test="currentstate != null" >
+        currentState = #{currentstate,jdbcType=VARCHAR},
+      </if>
+      <if test="statechangetime != null" >
+        stateChangeTime = #{statechangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serno != null" >
+        serNo = #{serno,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barCode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedserno != null" >
+        replacedSerno = #{replacedserno,jdbcType=VARCHAR},
+      </if>
+      <if test="replacedbarcode != null" >
+        replacedBarCode = #{replacedbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="installserno != null" >
+        installSerNo = #{installserno,jdbcType=VARCHAR},
+      </if>
+      <if test="installmanageno != null" >
+        installManageNo = #{installmanageno,jdbcType=VARCHAR},
+      </if>
+      <if test="installbarcode != null" >
+        installBarCode = #{installbarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyorg != null" >
+        verifyOrg = #{verifyorg,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        verifyTime = #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.GaugeConfigureModel" >
+    update yn_nhjc_gauge_configure
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      meterName = #{metername,jdbcType=VARCHAR},
+      meterType = #{metertype,jdbcType=VARCHAR},
+      meterLevel = #{meterlevel,jdbcType=VARCHAR},
+      paramsType = #{paramsType,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      dataCode = #{datacode,jdbcType=VARCHAR},
+      reportArithmetic = #{reportarithmetic,jdbcType=VARCHAR},
+      reportRatio = #{reportratio,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      precisionLevel = #{precisionlevel,jdbcType=VARCHAR},
+      ranges = #{ranges,jdbcType=VARCHAR},
+      manageNo = #{manageno,jdbcType=VARCHAR},
+      alignState = #{alignstate,jdbcType=VARCHAR},
+      alignCycle = #{aligncycle,jdbcType=VARCHAR},
+      lastAlignDate = #{lastaligndate,jdbcType=TIMESTAMP},
+      nextAlignDate = #{nextaligndate,jdbcType=TIMESTAMP},
+      alignOrg = #{alignorg,jdbcType=VARCHAR},
+      unAlignReason = #{unalignreason,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      installer = #{installer,jdbcType=VARCHAR},
+      installTime = #{installtime,jdbcType=TIMESTAMP},
+      linkSys = #{linksys,jdbcType=VARCHAR},
+      currentState = #{currentstate,jdbcType=VARCHAR},
+      stateChangeTime = #{statechangetime,jdbcType=TIMESTAMP},
+      serNo = #{serno,jdbcType=VARCHAR},
+      barCode = #{barcode,jdbcType=VARCHAR},
+      replacedSerno = #{replacedserno,jdbcType=VARCHAR},
+      replacedBarCode = #{replacedbarcode,jdbcType=VARCHAR},
+      installSerNo = #{installserno,jdbcType=VARCHAR},
+      installManageNo = #{installmanageno,jdbcType=VARCHAR},
+      installBarCode = #{installbarcode,jdbcType=VARCHAR},
+      verifyOrg = #{verifyorg,jdbcType=VARCHAR},
+      verifyTime = #{verifytime,jdbcType=TIMESTAMP},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </update>
+</mapper>

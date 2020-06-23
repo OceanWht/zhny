@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.PlagformBasicdataRelModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.PlagformBasicdataRelModel" >
+    <id column="itemIndex" property="itemindex" jdbcType="INTEGER" />
+    <result column="basicDataName" property="basicdataname" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="back_filed1" property="backFiled1" jdbcType="VARCHAR" />
+    <result column="back_filed2" property="backFiled2" jdbcType="VARCHAR" />
+    <result column="back_filed3" property="backFiled3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    itemIndex, basicDataName, remark, back_filed1, back_filed2, back_filed3
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_plagform_basicdata_relationship
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_plagform_basicdata_relationship
+    where itemIndex = #{itemindex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_plagform_basicdata_relationship
+    where itemIndex = #{itemindex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.PlagformBasicdataRelModel" >
+    insert into yn_nhjc_plagform_basicdata_relationship (itemIndex, basicDataName, remark, 
+      back_filed1, back_filed2, back_filed3
+      )
+    values (#{itemindex,jdbcType=INTEGER}, #{basicdataname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{backFiled1,jdbcType=VARCHAR}, #{backFiled2,jdbcType=VARCHAR}, #{backFiled3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.PlagformBasicdataRelModel" >
+    insert into yn_nhjc_plagform_basicdata_relationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemindex != null" >
+        itemIndex,
+      </if>
+      <if test="basicdataname != null" >
+        basicDataName,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="backFiled1 != null" >
+        back_filed1,
+      </if>
+      <if test="backFiled2 != null" >
+        back_filed2,
+      </if>
+      <if test="backFiled3 != null" >
+        back_filed3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemindex != null" >
+        #{itemindex,jdbcType=INTEGER},
+      </if>
+      <if test="basicdataname != null" >
+        #{basicdataname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="backFiled1 != null" >
+        #{backFiled1,jdbcType=VARCHAR},
+      </if>
+      <if test="backFiled2 != null" >
+        #{backFiled2,jdbcType=VARCHAR},
+      </if>
+      <if test="backFiled3 != null" >
+        #{backFiled3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.PlagformBasicdataRelModel" >
+    update yn_nhjc_plagform_basicdata_relationship
+    <set >
+      <if test="basicdataname != null" >
+        basicDataName = #{basicdataname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="backFiled1 != null" >
+        back_filed1 = #{backFiled1,jdbcType=VARCHAR},
+      </if>
+      <if test="backFiled2 != null" >
+        back_filed2 = #{backFiled2,jdbcType=VARCHAR},
+      </if>
+      <if test="backFiled3 != null" >
+        back_filed3 = #{backFiled3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where itemIndex = #{itemindex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.PlagformBasicdataRelModel" >
+    update yn_nhjc_plagform_basicdata_relationship
+    set basicDataName = #{basicdataname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      back_filed1 = #{backFiled1,jdbcType=VARCHAR},
+      back_filed2 = #{backFiled2,jdbcType=VARCHAR},
+      back_filed3 = #{backFiled3,jdbcType=VARCHAR}
+    where itemIndex = #{itemindex,jdbcType=INTEGER}
+  </update>
+</mapper>

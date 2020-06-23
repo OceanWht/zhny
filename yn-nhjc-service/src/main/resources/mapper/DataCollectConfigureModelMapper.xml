@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.DataCollectConfigureModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.DataCollectConfigureModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="collectItemName" property="collectitemname" jdbcType="VARCHAR" />
+    <result column="dataCode" property="datacode" jdbcType="VARCHAR" />
+    <result column="processCode" property="processcode" jdbcType="VARCHAR" />
+    <result column="processUnitCode" property="processunitcode" jdbcType="VARCHAR" />
+    <result column="equipmentCode" property="equipmentcode" jdbcType="VARCHAR" />
+    <result column="equipmentUnitCode" property="equipmentunitcode" jdbcType="VARCHAR" />
+    <result column="energyClassCode" property="energyclasscode" jdbcType="VARCHAR" />
+    <result column="energyTypeCode" property="energytypecode" jdbcType="VARCHAR" />
+    <result column="dataUsageCode" property="datausagecode" jdbcType="VARCHAR" />
+    <result column="inputType" property="inputtype" jdbcType="VARCHAR" />
+    <result column="dataValueMax" property="datavaluemax" jdbcType="VARCHAR" />
+    <result column="dataValueMin" property="datavaluemin" jdbcType="VARCHAR" />
+    <result column="statType" property="stattype" jdbcType="VARCHAR" />
+    <result column="collectSystemName" property="collectsystemname" jdbcType="VARCHAR" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, collectItemName, dataCode, 
+    processCode, processUnitCode, equipmentCode, equipmentUnitCode, energyClassCode, 
+    energyTypeCode, dataUsageCode, inputType, dataValueMax, dataValueMin, statType, collectSystemName, 
+    scope, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+
+  <select id="selectByDataIndex" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_data_collect_configure
+    where dataIndex = #{dataIndex,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_data_collect_configure
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据社会信用统一代码查询所有列表 -->
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+  	from yn_nhjc_data_collect_configure
+  	where enterpriseCode = #{enterpriseCode, jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.DataCollectConfigureModel" >
+    delete from yn_nhjc_data_collect_configure
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.DataCollectConfigureModel" >
+    insert into yn_nhjc_data_collect_configure (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      collectItemName, dataCode, processCode, 
+      processUnitCode, equipmentCode, equipmentUnitCode, 
+      energyClassCode, energyTypeCode, dataUsageCode, 
+      inputType, dataValueMax, dataValueMin, 
+      statType, collectSystemName, scope, 
+      backup_field_1, backup_field_2, backup_field_3
+      )
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{collectitemname,jdbcType=VARCHAR}, #{datacode,jdbcType=VARCHAR}, #{processcode,jdbcType=VARCHAR}, 
+      #{processunitcode,jdbcType=VARCHAR}, #{equipmentcode,jdbcType=VARCHAR}, #{equipmentunitcode,jdbcType=VARCHAR}, 
+      #{energyclasscode,jdbcType=VARCHAR}, #{energytypecode,jdbcType=VARCHAR}, #{datausagecode,jdbcType=VARCHAR}, 
+      #{inputtype,jdbcType=VARCHAR}, #{datavaluemax,jdbcType=VARCHAR}, #{datavaluemin,jdbcType=VARCHAR}, 
+      #{stattype,jdbcType=VARCHAR}, #{collectsystemname,jdbcType=VARCHAR}, #{scope,jdbcType=VARCHAR}, 
+      #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.DataCollectConfigureModel" >
+    insert into yn_nhjc_data_collect_configure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="collectitemname != null" >
+        collectItemName,
+      </if>
+      <if test="datacode != null" >
+        dataCode,
+      </if>
+      <if test="processcode != null" >
+        processCode,
+      </if>
+      <if test="processunitcode != null" >
+        processUnitCode,
+      </if>
+      <if test="equipmentcode != null" >
+        equipmentCode,
+      </if>
+      <if test="equipmentunitcode != null" >
+        equipmentUnitCode,
+      </if>
+      <if test="energyclasscode != null" >
+        energyClassCode,
+      </if>
+      <if test="energytypecode != null" >
+        energyTypeCode,
+      </if>
+      <if test="datausagecode != null" >
+        dataUsageCode,
+      </if>
+      <if test="inputtype != null" >
+        inputType,
+      </if>
+      <if test="datavaluemax != null" >
+        dataValueMax,
+      </if>
+      <if test="datavaluemin != null" >
+        dataValueMin,
+      </if>
+      <if test="stattype != null" >
+        statType,
+      </if>
+      <if test="collectsystemname != null" >
+        collectSystemName,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="collectitemname != null" >
+        #{collectitemname,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="processcode != null" >
+        #{processcode,jdbcType=VARCHAR},
+      </if>
+      <if test="processunitcode != null" >
+        #{processunitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentcode != null" >
+        #{equipmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentunitcode != null" >
+        #{equipmentunitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyclasscode != null" >
+        #{energyclasscode,jdbcType=VARCHAR},
+      </if>
+      <if test="energytypecode != null" >
+        #{energytypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="datausagecode != null" >
+        #{datausagecode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtype != null" >
+        #{inputtype,jdbcType=VARCHAR},
+      </if>
+      <if test="datavaluemax != null" >
+        #{datavaluemax,jdbcType=VARCHAR},
+      </if>
+      <if test="datavaluemin != null" >
+        #{datavaluemin,jdbcType=VARCHAR},
+      </if>
+      <if test="stattype != null" >
+        #{stattype,jdbcType=VARCHAR},
+      </if>
+      <if test="collectsystemname != null" >
+        #{collectsystemname,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.DataCollectConfigureModel" >
+    update yn_nhjc_data_collect_configure
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="collectitemname != null" >
+        collectItemName = #{collectitemname,jdbcType=VARCHAR},
+      </if>
+      <if test="datacode != null" >
+        dataCode = #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="processcode != null" >
+        processCode = #{processcode,jdbcType=VARCHAR},
+      </if>
+      <if test="processunitcode != null" >
+        processUnitCode = #{processunitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentcode != null" >
+        equipmentCode = #{equipmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentunitcode != null" >
+        equipmentUnitCode = #{equipmentunitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyclasscode != null" >
+        energyClassCode = #{energyclasscode,jdbcType=VARCHAR},
+      </if>
+      <if test="energytypecode != null" >
+        energyTypeCode = #{energytypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="datausagecode != null" >
+        dataUsageCode = #{datausagecode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtype != null" >
+        inputType = #{inputtype,jdbcType=VARCHAR},
+      </if>
+      <if test="datavaluemax != null" >
+        dataValueMax = #{datavaluemax,jdbcType=VARCHAR},
+      </if>
+      <if test="datavaluemin != null" >
+        dataValueMin = #{datavaluemin,jdbcType=VARCHAR},
+      </if>
+      <if test="stattype != null" >
+        statType = #{stattype,jdbcType=VARCHAR},
+      </if>
+      <if test="collectsystemname != null" >
+        collectSystemName = #{collectsystemname,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.DataCollectConfigureModel" >
+    update yn_nhjc_data_collect_configure
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      collectItemName = #{collectitemname,jdbcType=VARCHAR},
+      dataCode = #{datacode,jdbcType=VARCHAR},
+      processCode = #{processcode,jdbcType=VARCHAR},
+      processUnitCode = #{processunitcode,jdbcType=VARCHAR},
+      equipmentCode = #{equipmentcode,jdbcType=VARCHAR},
+      equipmentUnitCode = #{equipmentunitcode,jdbcType=VARCHAR},
+      energyClassCode = #{energyclasscode,jdbcType=VARCHAR},
+      energyTypeCode = #{energytypecode,jdbcType=VARCHAR},
+      dataUsageCode = #{datausagecode,jdbcType=VARCHAR},
+      inputType = #{inputtype,jdbcType=VARCHAR},
+      dataValueMax = #{datavaluemax,jdbcType=VARCHAR},
+      dataValueMin = #{datavaluemin,jdbcType=VARCHAR},
+      statType = #{stattype,jdbcType=VARCHAR},
+      collectSystemName = #{collectsystemname,jdbcType=VARCHAR},
+      scope = #{scope,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </update>
+</mapper>

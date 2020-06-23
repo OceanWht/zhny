@@ -533,4 +533,99 @@ public class ApiService {
 
         return analogDataBeans;
     }
+
+    public List<UnitInfoBean> getVagueUnit(Map<String, String> request) {
+        List<UnitInfoBean> unitInfoBeans = null;
+        String token = request.get("token");
+        String url = request.get("url");
+        String uid = request.get("uid");
+        if (Strings.isNullOrEmpty(token) || Strings.isNullOrEmpty(url) ||Strings.isNullOrEmpty(uid)){
+            return  unitInfoBeans;
+        }
+
+        url = "direct://"+url;
+        HttpHeaders headers = getHttpHeaders(token);
+
+        Map<String,String> map = new HashMap<String, String>();
+        map.put("uid",uid);
+        map.put("name","");
+        map.put("ut","7000");
+        HttpEntity httpEntity = new HttpEntity(map,headers);
+
+        ResponseEntity<String> entity = genericRest.post(url + "Archive/GetVagueUnit", httpEntity,
+                new ParameterizedTypeReference<String>() {});
+        if (entity.getStatusCode().equals(HttpStatus.OK)){
+            String res = entity.getBody();
+            if (Strings.isNullOrEmpty(res)){
+                return unitInfoBeans;
+            }
+
+            JSONObject obj = JSONObject.parseObject(res);
+            if (obj.getJSONObject("header").getInteger("status") == 0){
+                unitInfoBeans = obj.getJSONArray("body").toJavaList(UnitInfoBean.class);
+            }
+
+        }
+
+        return unitInfoBeans;
+    }
+
+    public List<CalcGroupBean> getUnitAllCalcGroup(Map<String, String> request) {
+        List<CalcGroupBean> calcGroupBeans = null;
+        String token = request.get("token");
+        String url = request.get("url");
+        String uIds = request.get("uIds");
+        if (Strings.isNullOrEmpty(token) || Strings.isNullOrEmpty(url) ||Strings.isNullOrEmpty(uIds)){
+            return  calcGroupBeans;
+        }
+
+        url = "direct://"+url;
+        HttpHeaders headers = getHttpHeaders(token);
+
+        Map<String,String> map = new HashMap<String, String>();
+        map.put("uIds",uIds);
+        HttpEntity httpEntity = new HttpEntity(map,headers);
+
+        ResponseEntity<String> entity = genericRest.post(url + "Archive/GetUnitAllCalcGroup", httpEntity,
+                new ParameterizedTypeReference<String>() {});
+        if (entity.getStatusCode().equals(HttpStatus.OK)){
+            String res = entity.getBody();
+            if (Strings.isNullOrEmpty(res)){
+                return calcGroupBeans;
+            }
+
+            JSONObject obj = JSONObject.parseObject(res);
+            if (obj.getJSONObject("header").getInteger("status") == 0){
+                calcGroupBeans = obj.getJSONArray("body").toJavaList(CalcGroupBean.class);
+            }
+
+        }
+
+        return calcGroupBeans;
+    }
+
+    public List<UnitGroupCurveDataBean> getUnitGroupCurveData(Map<String, String> request) {
+        List<UnitGroupCurveDataBean> groupCurveDataBeans = null;
+        String token = request.get("token");
+        String url = request.get("url");
+        url = "direct://"+url;
+        HttpHeaders headers = getHttpHeaders(token);
+        HttpEntity httpEntity = new HttpEntity(request,headers);
+        ResponseEntity<String> entity = genericRest.post(url + "Unit/GetUnitGroupCurveData", httpEntity,
+                new ParameterizedTypeReference<String>() {});
+        if (entity.getStatusCode().equals(HttpStatus.OK)){
+            String res = entity.getBody();
+            if (Strings.isNullOrEmpty(res)){
+                return groupCurveDataBeans;
+            }
+
+            JSONObject obj = JSONObject.parseObject(res);
+            if (obj.getJSONObject("header").getInteger("status") == 0){
+                groupCurveDataBeans = obj.getJSONArray("body").toJavaList(UnitGroupCurveDataBean.class);
+            }
+
+        }
+
+        return groupCurveDataBeans;
+    }
 }

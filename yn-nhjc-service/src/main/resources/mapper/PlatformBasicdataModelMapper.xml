@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.PlatformBasicdataModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.PlatformBasicdataModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="itemIndex" property="itemindex" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="collectPrecision" property="collectprecision" jdbcType="VARCHAR" />
+    <result column="collectRatio" property="collectratio" jdbcType="VARCHAR" />
+    <result column="collectUnit" property="collectunit" jdbcType="VARCHAR" />
+    <result column="complexPrecision" property="complexprecision" jdbcType="VARCHAR" />
+    <result column="complexUnit" property="complexunit" jdbcType="VARCHAR" />
+    <result column="qualityPrecision" property="qualityprecision" jdbcType="VARCHAR" />
+    <result column="qualityUnit" property="qualityunit" jdbcType="VARCHAR" />
+    <result column="relatio" property="relatio" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="targetType" property="targettype" jdbcType="VARCHAR" />
+    <result column="unitEn" property="uniten" jdbcType="VARCHAR" />
+    <result column="unitCh" property="unitch" jdbcType="VARCHAR" />
+    <result column="precisions" property="precisions" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+    <result column="backup_field_4" property="backupField4" jdbcType="VARCHAR" />
+    <result column="backup_field_5" property="backupField5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterpriseCode, itemIndex, code, name, industry, remark, collectPrecision, collectRatio, 
+    collectUnit, complexPrecision, complexUnit, qualityPrecision, qualityUnit, relatio, 
+    type, unit, targetType, unitEn, unitCh, precisions, backup_field_1, backup_field_2, 
+    backup_field_3, backup_field_4, backup_field_5
+  </sql>
+  <select id="getCollectRatio" resultType="java.lang.String" parameterType="java.lang.String">
+    select collectRatio from yn_nhjc_platform_basicdata where itemIndex = '8' and code=#{code,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_platform_basicdata
+    where code = #{regioncode,jdbcType=VARCHAR} and itemIndex=#{itemIndex,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_platform_basicdata
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByIntemIndex" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_platform_basicdata
+    where itemIndex = #{itemIndex,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_platform_basicdata
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.PlatformBasicdataModel" >
+    insert into yn_nhjc_platform_basicdata (id, enterpriseCode, itemIndex, 
+      code, name, industry, 
+      remark, collectPrecision, collectRatio, 
+      collectUnit, complexPrecision, complexUnit, 
+      qualityPrecision, qualityUnit, relatio, 
+      type, unit, targetType, 
+      unitEn, unitCh, precisions, 
+      backup_field_1, backup_field_2, backup_field_3, 
+      backup_field_4, backup_field_5)
+    values (#{id,jdbcType=INTEGER}, #{enterprisecode,jdbcType=VARCHAR}, #{itemindex,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{collectprecision,jdbcType=VARCHAR}, #{collectratio,jdbcType=VARCHAR}, 
+      #{collectunit,jdbcType=VARCHAR}, #{complexprecision,jdbcType=VARCHAR}, #{complexunit,jdbcType=VARCHAR}, 
+      #{qualityprecision,jdbcType=VARCHAR}, #{qualityunit,jdbcType=VARCHAR}, #{relatio,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{targettype,jdbcType=VARCHAR}, 
+      #{uniten,jdbcType=VARCHAR}, #{unitch,jdbcType=VARCHAR}, #{precisions,jdbcType=VARCHAR}, 
+      #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR}, 
+      #{backupField4,jdbcType=VARCHAR}, #{backupField5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.PlatformBasicdataModel" >
+    insert into yn_nhjc_platform_basicdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="itemindex != null" >
+        itemIndex,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="collectprecision != null" >
+        collectPrecision,
+      </if>
+      <if test="collectratio != null" >
+        collectRatio,
+      </if>
+      <if test="collectunit != null" >
+        collectUnit,
+      </if>
+      <if test="complexprecision != null" >
+        complexPrecision,
+      </if>
+      <if test="complexunit != null" >
+        complexUnit,
+      </if>
+      <if test="qualityprecision != null" >
+        qualityPrecision,
+      </if>
+      <if test="qualityunit != null" >
+        qualityUnit,
+      </if>
+      <if test="relatio != null" >
+        relatio,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="targettype != null" >
+        targetType,
+      </if>
+      <if test="uniten != null" >
+        unitEn,
+      </if>
+      <if test="unitch != null" >
+        unitCh,
+      </if>
+      <if test="precisions != null" >
+        precisions,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+      <if test="backupField4 != null" >
+        backup_field_4,
+      </if>
+      <if test="backupField5 != null" >
+        backup_field_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemindex != null" >
+        #{itemindex,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="collectprecision != null" >
+        #{collectprecision,jdbcType=VARCHAR},
+      </if>
+      <if test="collectratio != null" >
+        #{collectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="collectunit != null" >
+        #{collectunit,jdbcType=VARCHAR},
+      </if>
+      <if test="complexprecision != null" >
+        #{complexprecision,jdbcType=VARCHAR},
+      </if>
+      <if test="complexunit != null" >
+        #{complexunit,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityprecision != null" >
+        #{qualityprecision,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityunit != null" >
+        #{qualityunit,jdbcType=VARCHAR},
+      </if>
+      <if test="relatio != null" >
+        #{relatio,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="targettype != null" >
+        #{targettype,jdbcType=VARCHAR},
+      </if>
+      <if test="uniten != null" >
+        #{uniten,jdbcType=VARCHAR},
+      </if>
+      <if test="unitch != null" >
+        #{unitch,jdbcType=VARCHAR},
+      </if>
+      <if test="precisions != null" >
+        #{precisions,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField4 != null" >
+        #{backupField4,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField5 != null" >
+        #{backupField5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.PlatformBasicdataModel" >
+    update yn_nhjc_platform_basicdata
+    <set >
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemindex != null" >
+        itemIndex = #{itemindex,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="collectprecision != null" >
+        collectPrecision = #{collectprecision,jdbcType=VARCHAR},
+      </if>
+      <if test="collectratio != null" >
+        collectRatio = #{collectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="collectunit != null" >
+        collectUnit = #{collectunit,jdbcType=VARCHAR},
+      </if>
+      <if test="complexprecision != null" >
+        complexPrecision = #{complexprecision,jdbcType=VARCHAR},
+      </if>
+      <if test="complexunit != null" >
+        complexUnit = #{complexunit,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityprecision != null" >
+        qualityPrecision = #{qualityprecision,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityunit != null" >
+        qualityUnit = #{qualityunit,jdbcType=VARCHAR},
+      </if>
+      <if test="relatio != null" >
+        relatio = #{relatio,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="targettype != null" >
+        targetType = #{targettype,jdbcType=VARCHAR},
+      </if>
+      <if test="uniten != null" >
+        unitEn = #{uniten,jdbcType=VARCHAR},
+      </if>
+      <if test="unitch != null" >
+        unitCh = #{unitch,jdbcType=VARCHAR},
+      </if>
+      <if test="precisions != null" >
+        precisions = #{precisions,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField4 != null" >
+        backup_field_4 = #{backupField4,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField5 != null" >
+        backup_field_5 = #{backupField5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.PlatformBasicdataModel" >
+    update yn_nhjc_platform_basicdata
+    set enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      itemIndex = #{itemindex,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      collectPrecision = #{collectprecision,jdbcType=VARCHAR},
+      collectRatio = #{collectratio,jdbcType=VARCHAR},
+      collectUnit = #{collectunit,jdbcType=VARCHAR},
+      complexPrecision = #{complexprecision,jdbcType=VARCHAR},
+      complexUnit = #{complexunit,jdbcType=VARCHAR},
+      qualityPrecision = #{qualityprecision,jdbcType=VARCHAR},
+      qualityUnit = #{qualityunit,jdbcType=VARCHAR},
+      relatio = #{relatio,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      targetType = #{targettype,jdbcType=VARCHAR},
+      unitEn = #{uniten,jdbcType=VARCHAR},
+      unitCh = #{unitch,jdbcType=VARCHAR},
+      precisions = #{precisions,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      backup_field_4 = #{backupField4,jdbcType=VARCHAR},
+      backup_field_5 = #{backupField5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <insert id="insertBanth" parameterType="java.util.List">
+    insert into yn_nhjc_platform_basicdata
+    (enterpriseCode, itemIndex,
+    code, name, industry,
+    remark, collectPrecision, collectRatio,
+    collectUnit, complexPrecision, complexUnit,
+    qualityPrecision, qualityUnit, relatio,
+    type, unit, targetType,
+    unitEn, unitCh, precisions,
+    backup_field_1, backup_field_2, backup_field_3,
+    backup_field_4, backup_field_5)
+    VALUES
+    <foreach collection="list" index="index" item="item" separator="," >
+      (
+      #{item.enterprisecode,jdbcType=VARCHAR},
+        #{item.itemindex,jdbcType=VARCHAR},
+        #{item.code,jdbcType=VARCHAR},
+        #{item.name,jdbcType=VARCHAR},
+        #{item.industry,jdbcType=VARCHAR},
+        #{item.remark,jdbcType=VARCHAR},
+        #{item.collectprecision,jdbcType=VARCHAR},
+        #{item.collectratio,jdbcType=VARCHAR},
+        #{item.collectunit,jdbcType=VARCHAR},
+        #{item.complexprecision,jdbcType=VARCHAR},
+        #{item.complexunit,jdbcType=VARCHAR},
+        #{item.qualityprecision,jdbcType=VARCHAR},
+        #{item.qualityunit,jdbcType=VARCHAR},
+        #{item.relatio,jdbcType=VARCHAR},
+        #{item.type,jdbcType=VARCHAR},
+        #{item.unit,jdbcType=VARCHAR},
+        #{item.targettype,jdbcType=VARCHAR},
+        #{item.uniten,jdbcType=VARCHAR},
+        #{item.unitch,jdbcType=VARCHAR},
+        #{item.precisions,jdbcType=VARCHAR},
+        #{item.backupField1,jdbcType=VARCHAR},
+        #{item.backupField2,jdbcType=VARCHAR},
+        #{item.backupField3,jdbcType=VARCHAR},
+        #{item.backupField4,jdbcType=VARCHAR},
+        #{item.backupField5,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+
+  <delete id="deleteBanth" parameterType="java.util.List">
+    delete from yn_nhjc_platform_basicdata
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," close=")" open="(">
+      #{item.id}
+    </foreach>
+  </delete>
+</mapper>

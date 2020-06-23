@@ -1,0 +1,53 @@
+
+server:
+  port: 8081
+  servlet:
+    context-path: /yn-nhjc
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 5
+  druid:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xl_yn_nhjc?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+    maxActive: 30
+    minIdle: 5
+    maxWait: 10000
+    validationQuery: SELECT 'X'
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+  application:
+    name: yn-nhjc
+
+eureka:
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8089/regiest-server/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+user:
+  api_gateway_surface: api_gateway_surface
+  yn_surface: yn_surface
+  8008_surface: 8008_surface
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+yn-nhjc:
+ download_public_index: 1,2,16
+ init-password: 123456
+
+

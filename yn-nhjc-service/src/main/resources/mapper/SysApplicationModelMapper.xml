@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.SysApplicationModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.SysApplicationModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="isorg" property="isorg" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="cmpName" property="cmpname" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="zipCode" property="zipcode" jdbcType="VARCHAR" />
+    <result column="corporationName" property="corporationname" jdbcType="VARCHAR" />
+    <result column="regionCode" property="regioncode" jdbcType="VARCHAR" />
+    <result column="registerAddress" property="registeraddress" jdbcType="VARCHAR" />
+    <result column="registerDate" property="registerdate" jdbcType="VARCHAR" />
+    <result column="registerPrincipal" property="registerprincipal" jdbcType="VARCHAR" />
+    <result column="typeCode" property="typecode" jdbcType="VARCHAR" />
+    <result column="industryCode" property="industrycode" jdbcType="VARCHAR" />
+    <result column="fieldCode" property="fieldcode" jdbcType="VARCHAR" />
+    <result column="energyConsumeLevel" property="energyconsumelevel" jdbcType="VARCHAR" />
+    <result column="center" property="center" jdbcType="VARCHAR" />
+    <result column="jgzh" property="jgzh" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="productionLine" property="productionline" jdbcType="VARCHAR" />
+    <result column="leadingProduct" property="leadingproduct" jdbcType="VARCHAR" />
+    <result column="groupName" property="groupname" jdbcType="VARCHAR" />
+    <result column="groupAddress" property="groupaddress" jdbcType="VARCHAR" />
+    <result column="orgType" property="orgtype" jdbcType="VARCHAR" />
+    <result column="orgCode" property="orgcode" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xl.ems.ynnhjc.model.SysApplicationModelWithBLOBs" extends="BaseResultMap" >
+    <result column="license" property="license" jdbcType="LONGVARCHAR" />
+    <result column="organization" property="organization" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterpriseCode, dataIndex, isorg, password, cmpName, address, zipCode, corporationName, 
+    regionCode, registerAddress, registerDate, registerPrincipal, typeCode, industryCode, 
+    fieldCode, energyConsumeLevel, center, jgzh, latitude, longitude, phone, fax, email, 
+    url, productionLine, leadingProduct, groupName, groupAddress, orgType, orgCode, remark, 
+    backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <sql id="Blob_Column_List" >
+    license, organization
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yn_nhjc_sysapplication
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_sysapplication
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.SysApplicationModelWithBLOBs" >
+    insert into yn_nhjc_sysapplication (id, enterpriseCode, dataIndex, 
+      isorg, password, cmpName, 
+      address, zipCode, corporationName, 
+      regionCode, registerAddress, registerDate, 
+      registerPrincipal, typeCode, industryCode, 
+      fieldCode, energyConsumeLevel, center, 
+      jgzh, latitude, longitude, 
+      phone, fax, email, 
+      url, productionLine, leadingProduct, 
+      groupName, groupAddress, orgType, 
+      orgCode, remark, backup_field_1, 
+      backup_field_2, backup_field_3, license, 
+      organization)
+    values (#{id,jdbcType=INTEGER}, #{enterprisecode,jdbcType=VARCHAR}, #{dataindex,jdbcType=VARCHAR}, 
+      #{isorg,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{cmpname,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, #{corporationname,jdbcType=VARCHAR}, 
+      #{regioncode,jdbcType=VARCHAR}, #{registeraddress,jdbcType=VARCHAR}, #{registerdate,jdbcType=VARCHAR}, 
+      #{registerprincipal,jdbcType=VARCHAR}, #{typecode,jdbcType=VARCHAR}, #{industrycode,jdbcType=VARCHAR}, 
+      #{fieldcode,jdbcType=VARCHAR}, #{energyconsumelevel,jdbcType=VARCHAR}, #{center,jdbcType=VARCHAR}, 
+      #{jgzh,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{productionline,jdbcType=VARCHAR}, #{leadingproduct,jdbcType=VARCHAR}, 
+      #{groupname,jdbcType=VARCHAR}, #{groupaddress,jdbcType=VARCHAR}, #{orgtype,jdbcType=VARCHAR}, 
+      #{orgcode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{backupField1,jdbcType=VARCHAR}, 
+      #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR}, #{license,jdbcType=LONGVARCHAR}, 
+      #{organization,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.SysApplicationModelWithBLOBs" >
+    insert into yn_nhjc_sysapplication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="isorg != null" >
+        isorg,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="cmpname != null" >
+        cmpName,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="zipcode != null" >
+        zipCode,
+      </if>
+      <if test="corporationname != null" >
+        corporationName,
+      </if>
+      <if test="regioncode != null" >
+        regionCode,
+      </if>
+      <if test="registeraddress != null" >
+        registerAddress,
+      </if>
+      <if test="registerdate != null" >
+        registerDate,
+      </if>
+      <if test="registerprincipal != null" >
+        registerPrincipal,
+      </if>
+      <if test="typecode != null" >
+        typeCode,
+      </if>
+      <if test="industrycode != null" >
+        industryCode,
+      </if>
+      <if test="fieldcode != null" >
+        fieldCode,
+      </if>
+      <if test="energyconsumelevel != null" >
+        energyConsumeLevel,
+      </if>
+      <if test="center != null" >
+        center,
+      </if>
+      <if test="jgzh != null" >
+        jgzh,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="productionline != null" >
+        productionLine,
+      </if>
+      <if test="leadingproduct != null" >
+        leadingProduct,
+      </if>
+      <if test="groupname != null" >
+        groupName,
+      </if>
+      <if test="groupaddress != null" >
+        groupAddress,
+      </if>
+      <if test="orgtype != null" >
+        orgType,
+      </if>
+      <if test="orgcode != null" >
+        orgCode,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+      <if test="license != null" >
+        license,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="isorg != null" >
+        #{isorg,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpname != null" >
+        #{cmpname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationname != null" >
+        #{corporationname,jdbcType=VARCHAR},
+      </if>
+      <if test="regioncode != null" >
+        #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress != null" >
+        #{registeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null" >
+        #{registerdate,jdbcType=VARCHAR},
+      </if>
+      <if test="registerprincipal != null" >
+        #{registerprincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="industrycode != null" >
+        #{industrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldcode != null" >
+        #{fieldcode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyconsumelevel != null" >
+        #{energyconsumelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="center != null" >
+        #{center,jdbcType=VARCHAR},
+      </if>
+      <if test="jgzh != null" >
+        #{jgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="productionline != null" >
+        #{productionline,jdbcType=VARCHAR},
+      </if>
+      <if test="leadingproduct != null" >
+        #{leadingproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupaddress != null" >
+        #{groupaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgtype != null" >
+        #{orgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null" >
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        #{license,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.SysApplicationModelWithBLOBs" >
+    update yn_nhjc_sysapplication
+    <set >
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="isorg != null" >
+        isorg = #{isorg,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpname != null" >
+        cmpName = #{cmpname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        zipCode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationname != null" >
+        corporationName = #{corporationname,jdbcType=VARCHAR},
+      </if>
+      <if test="regioncode != null" >
+        regionCode = #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress != null" >
+        registerAddress = #{registeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null" >
+        registerDate = #{registerdate,jdbcType=VARCHAR},
+      </if>
+      <if test="registerprincipal != null" >
+        registerPrincipal = #{registerprincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        typeCode = #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="industrycode != null" >
+        industryCode = #{industrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldcode != null" >
+        fieldCode = #{fieldcode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyconsumelevel != null" >
+        energyConsumeLevel = #{energyconsumelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="center != null" >
+        center = #{center,jdbcType=VARCHAR},
+      </if>
+      <if test="jgzh != null" >
+        jgzh = #{jgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="productionline != null" >
+        productionLine = #{productionline,jdbcType=VARCHAR},
+      </if>
+      <if test="leadingproduct != null" >
+        leadingProduct = #{leadingproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        groupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupaddress != null" >
+        groupAddress = #{groupaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgtype != null" >
+        orgType = #{orgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null" >
+        orgCode = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        license = #{license,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xl.ems.ynnhjc.model.SysApplicationModelWithBLOBs" >
+    update yn_nhjc_sysapplication
+    set enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      isorg = #{isorg,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      cmpName = #{cmpname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zipCode = #{zipcode,jdbcType=VARCHAR},
+      corporationName = #{corporationname,jdbcType=VARCHAR},
+      regionCode = #{regioncode,jdbcType=VARCHAR},
+      registerAddress = #{registeraddress,jdbcType=VARCHAR},
+      registerDate = #{registerdate,jdbcType=VARCHAR},
+      registerPrincipal = #{registerprincipal,jdbcType=VARCHAR},
+      typeCode = #{typecode,jdbcType=VARCHAR},
+      industryCode = #{industrycode,jdbcType=VARCHAR},
+      fieldCode = #{fieldcode,jdbcType=VARCHAR},
+      energyConsumeLevel = #{energyconsumelevel,jdbcType=VARCHAR},
+      center = #{center,jdbcType=VARCHAR},
+      jgzh = #{jgzh,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      productionLine = #{productionline,jdbcType=VARCHAR},
+      leadingProduct = #{leadingproduct,jdbcType=VARCHAR},
+      groupName = #{groupname,jdbcType=VARCHAR},
+      groupAddress = #{groupaddress,jdbcType=VARCHAR},
+      orgType = #{orgtype,jdbcType=VARCHAR},
+      orgCode = #{orgcode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      license = #{license,jdbcType=LONGVARCHAR},
+      organization = #{organization,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.SysApplicationModel" >
+    update yn_nhjc_sysapplication
+    set enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      isorg = #{isorg,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      cmpName = #{cmpname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zipCode = #{zipcode,jdbcType=VARCHAR},
+      corporationName = #{corporationname,jdbcType=VARCHAR},
+      regionCode = #{regioncode,jdbcType=VARCHAR},
+      registerAddress = #{registeraddress,jdbcType=VARCHAR},
+      registerDate = #{registerdate,jdbcType=VARCHAR},
+      registerPrincipal = #{registerprincipal,jdbcType=VARCHAR},
+      typeCode = #{typecode,jdbcType=VARCHAR},
+      industryCode = #{industrycode,jdbcType=VARCHAR},
+      fieldCode = #{fieldcode,jdbcType=VARCHAR},
+      energyConsumeLevel = #{energyconsumelevel,jdbcType=VARCHAR},
+      center = #{center,jdbcType=VARCHAR},
+      jgzh = #{jgzh,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      productionLine = #{productionline,jdbcType=VARCHAR},
+      leadingProduct = #{leadingproduct,jdbcType=VARCHAR},
+      groupName = #{groupname,jdbcType=VARCHAR},
+      groupAddress = #{groupaddress,jdbcType=VARCHAR},
+      orgType = #{orgtype,jdbcType=VARCHAR},
+      orgCode = #{orgcode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getAll" resultMap="ResultMapWithBLOBs">
+    select
+    *
+    from yn_nhjc_sysapplication
+  </select>
+
+  <select id="selectByEC" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+  select
+    *
+    from yn_nhjc_sysapplication
+     where enterpriseCode = #{enterpriseCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.BasicdataOtherModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.BasicdataOtherModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="itemIndex" property="itemindex" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="io1" property="io1" jdbcType="VARCHAR" />
+    <result column="io2" property="io2" jdbcType="VARCHAR" />
+    <result column="io3" property="io3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, itemIndex, code, name, io1, io2, io3
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_basicdata_other
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_basicdata_other
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_basicdata_other
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.BasicdataOtherModel" >
+    insert into yn_nhjc_basicdata_other (id, itemIndex, code, 
+      name, io1, io2, io3
+      )
+    values (#{id,jdbcType=INTEGER}, #{itemindex,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{io1,jdbcType=VARCHAR}, #{io2,jdbcType=VARCHAR}, #{io3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.BasicdataOtherModel" >
+    insert into yn_nhjc_basicdata_other
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemindex != null" >
+        itemIndex,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="io1 != null" >
+        io1,
+      </if>
+      <if test="io2 != null" >
+        io2,
+      </if>
+      <if test="io3 != null" >
+        io3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemindex != null" >
+        #{itemindex,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="io1 != null" >
+        #{io1,jdbcType=VARCHAR},
+      </if>
+      <if test="io2 != null" >
+        #{io2,jdbcType=VARCHAR},
+      </if>
+      <if test="io3 != null" >
+        #{io3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.BasicdataOtherModel" >
+    update yn_nhjc_basicdata_other
+    <set >
+      <if test="itemindex != null" >
+        itemIndex = #{itemindex,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="io1 != null" >
+        io1 = #{io1,jdbcType=VARCHAR},
+      </if>
+      <if test="io2 != null" >
+        io2 = #{io2,jdbcType=VARCHAR},
+      </if>
+      <if test="io3 != null" >
+        io3 = #{io3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.BasicdataOtherModel" >
+    update yn_nhjc_basicdata_other
+    set itemIndex = #{itemindex,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      io1 = #{io1,jdbcType=VARCHAR},
+      io2 = #{io2,jdbcType=VARCHAR},
+      io3 = #{io3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

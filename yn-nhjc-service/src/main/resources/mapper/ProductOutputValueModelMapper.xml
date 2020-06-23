@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.ProductOutputValueModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.ProductOutputValueModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="countYear" property="countyear" jdbcType="VARCHAR" />
+    <result column="outputValue" property="outputvalue" jdbcType="VARCHAR" />
+    <result column="addedValue" property="addedvalue" jdbcType="VARCHAR" />
+    <result column="salesIncome" property="salesincome" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, countYear, outputValue, 
+    addedValue, salesIncome, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_product_output_value
+    where enterpriseCode = #{enterprisecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.ProductOutputValueModel" >
+    delete from yn_nhjc_product_output_value
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.ProductOutputValueModel" >
+    insert into yn_nhjc_product_output_value (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      countYear, outputValue, addedValue, 
+      salesIncome, backup_field_1, backup_field_2, 
+      backup_field_3)
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{countyear,jdbcType=VARCHAR}, #{outputvalue,jdbcType=VARCHAR}, #{addedvalue,jdbcType=VARCHAR}, 
+      #{salesincome,jdbcType=VARCHAR}, #{backupField1,jdbcType=VARCHAR}, #{backupField2,jdbcType=VARCHAR}, 
+      #{backupField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.ProductOutputValueModel" >
+    insert into yn_nhjc_product_output_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="countyear != null" >
+        countYear,
+      </if>
+      <if test="outputvalue != null" >
+        outputValue,
+      </if>
+      <if test="addedvalue != null" >
+        addedValue,
+      </if>
+      <if test="salesincome != null" >
+        salesIncome,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyear != null" >
+        #{countyear,jdbcType=VARCHAR},
+      </if>
+      <if test="outputvalue != null" >
+        #{outputvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="addedvalue != null" >
+        #{addedvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="salesincome != null" >
+        #{salesincome,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.ProductOutputValueModel" >
+    update yn_nhjc_product_output_value
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyear != null" >
+        countYear = #{countyear,jdbcType=VARCHAR},
+      </if>
+      <if test="outputvalue != null" >
+        outputValue = #{outputvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="addedvalue != null" >
+        addedValue = #{addedvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="salesincome != null" >
+        salesIncome = #{salesincome,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dataIndex = #{dataindex,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.ProductOutputValueModel" >
+    update yn_nhjc_product_output_value
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      countYear = #{countyear,jdbcType=VARCHAR},
+      outputValue = #{outputvalue,jdbcType=VARCHAR},
+      addedValue = #{addedvalue,jdbcType=VARCHAR},
+      salesIncome = #{salesincome,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

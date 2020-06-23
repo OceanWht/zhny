@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.ArganEnergyWarmModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.ArganEnergyWarmModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="regVersion" property="regversion" jdbcType="VARCHAR" />
+    <result column="dicVersion" property="dicversion" jdbcType="VARCHAR" />
+    <result column="dataIndex" property="dataindex" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="reportDate" property="reportdate" jdbcType="TIMESTAMP" />
+    <result column="idcName" property="idcname" jdbcType="VARCHAR" />
+    <result column="charger" property="charger" jdbcType="VARCHAR" />
+    <result column="statisticians" property="statisticians" jdbcType="VARCHAR" />
+    <result column="preparer" property="preparer" jdbcType="VARCHAR" />
+    <result column="preparDate" property="prepardate" jdbcType="TIMESTAMP" />
+    <result column="f301" property="f301" jdbcType="VARCHAR" />
+    <result column="f3011" property="f3011" jdbcType="VARCHAR" />
+    <result column="f3012" property="f3012" jdbcType="VARCHAR" />
+    <result column="f3013" property="f3013" jdbcType="VARCHAR" />
+    <result column="f302" property="f302" jdbcType="VARCHAR" />
+    <result column="f303" property="f303" jdbcType="VARCHAR" />
+    <result column="f304" property="f304" jdbcType="VARCHAR" />
+    <result column="f310" property="f310" jdbcType="VARCHAR" />
+    <result column="f311" property="f311" jdbcType="VARCHAR" />
+    <result column="f320" property="f320" jdbcType="VARCHAR" />
+    <result column="f321" property="f321" jdbcType="VARCHAR" />
+    <result column="f330" property="f330" jdbcType="VARCHAR" />
+    <result column="f331" property="f331" jdbcType="VARCHAR" />
+    <result column="f340" property="f340" jdbcType="VARCHAR" />
+    <result column="f341" property="f341" jdbcType="VARCHAR" />
+    <result column="f350" property="f350" jdbcType="VARCHAR" />
+    <result column="f351" property="f351" jdbcType="VARCHAR" />
+    <result column="f360" property="f360" jdbcType="VARCHAR" />
+    <result column="f361" property="f361" jdbcType="VARCHAR" />
+    <result column="f370" property="f370" jdbcType="VARCHAR" />
+    <result column="f371" property="f371" jdbcType="VARCHAR" />
+    <result column="i0" property="i0" jdbcType="VARCHAR" />
+    <result column="i1" property="i1" jdbcType="VARCHAR" />
+    <result column="i2" property="i2" jdbcType="VARCHAR" />
+    <result column="i3" property="i3" jdbcType="VARCHAR" />
+    <result column="i4" property="i4" jdbcType="VARCHAR" />
+    <result column="i5" property="i5" jdbcType="VARCHAR" />
+    <result column="i6" property="i6" jdbcType="VARCHAR" />
+    <result column="i7" property="i7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, regVersion, dicVersion, dataIndex, remark, enterpriseCode, reportDate, idcName, 
+    charger, statisticians, preparer, preparDate, f301, f3011, f3012, f3013, f302, f303, 
+    f304, f310, f311, f320, f321, f330, f331, f340, f341, f350, f351, f360, f361, f370, 
+    f371, i0, i1, i2, i3, i4, i5, i6, i7
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_argan_energy_warm
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据社会信用统一代码查询所有列表 -->
+  <select id="selectByEnterpriseCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+  	from yn_nhjc_argan_energy_warm
+  	where enterpriseCode = #{enterpriseCode, jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据preparDate字段和i0字段查询为上报的数据 -->
+  <select id="selectUnLoadingData" resultMap="BaseResultMap" parameterType="Map">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from yn_nhjc_argan_energy_warm
+  	where 1=1
+  	<if test="startDate != null and startDate != ''" >
+  		and preparDate BETWEEN #{startDate} AND #{endDate}
+  	</if>
+  	and i0 in ('1','2')
+  </select>
+  
+  <!-- 根据id修改报送日期、i0字段的状态 -->
+  <update id="updateById_Warm" parameterType="Map">
+  	update yn_nhjc_argan_energy_warm
+  	set reportDate = #{reportDate},
+  		i0 = #{i0}
+  	where id = #{id}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_argan_energy_warm
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.ArganEnergyWarmModel" >
+    insert into yn_nhjc_argan_energy_warm (id, regVersion, dicVersion, 
+      dataIndex, remark, enterpriseCode, 
+      reportDate, idcName, charger, 
+      statisticians, preparer, preparDate, 
+      f301, f3011, f3012, 
+      f3013, f302, f303, 
+      f304, f310, f311, f320, 
+      f321, f330, f331, f340, 
+      f341, f350, f351, f360, 
+      f361, f370, f371, i0, 
+      i1, i2, i3, i4, 
+      i5, i6, i7)
+    values (#{id,jdbcType=INTEGER}, #{regversion,jdbcType=VARCHAR}, #{dicversion,jdbcType=VARCHAR}, 
+      #{dataindex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{enterprisecode,jdbcType=VARCHAR}, 
+      #{reportdate,jdbcType=TIMESTAMP}, #{idcname,jdbcType=VARCHAR}, #{charger,jdbcType=VARCHAR}, 
+      #{statisticians,jdbcType=VARCHAR}, #{preparer,jdbcType=VARCHAR}, #{prepardate,jdbcType=TIMESTAMP}, 
+      #{f301,jdbcType=VARCHAR}, #{f3011,jdbcType=VARCHAR}, #{f3012,jdbcType=VARCHAR}, 
+      #{f3013,jdbcType=VARCHAR}, #{f302,jdbcType=VARCHAR}, #{f303,jdbcType=VARCHAR}, 
+      #{f304,jdbcType=VARCHAR}, #{f310,jdbcType=VARCHAR}, #{f311,jdbcType=VARCHAR}, #{f320,jdbcType=VARCHAR}, 
+      #{f321,jdbcType=VARCHAR}, #{f330,jdbcType=VARCHAR}, #{f331,jdbcType=VARCHAR}, #{f340,jdbcType=VARCHAR}, 
+      #{f341,jdbcType=VARCHAR}, #{f350,jdbcType=VARCHAR}, #{f351,jdbcType=VARCHAR}, #{f360,jdbcType=VARCHAR}, 
+      #{f361,jdbcType=VARCHAR}, #{f370,jdbcType=VARCHAR}, #{f371,jdbcType=VARCHAR}, #{i0,jdbcType=VARCHAR}, 
+      #{i1,jdbcType=VARCHAR}, #{i2,jdbcType=VARCHAR}, #{i3,jdbcType=VARCHAR}, #{i4,jdbcType=VARCHAR}, 
+      #{i5,jdbcType=VARCHAR}, #{i6,jdbcType=VARCHAR}, #{i7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.ArganEnergyWarmModel" >
+    insert into yn_nhjc_argan_energy_warm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regversion != null" >
+        regVersion,
+      </if>
+      <if test="dicversion != null" >
+        dicVersion,
+      </if>
+      <if test="dataindex != null" >
+        dataIndex,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="reportdate != null" >
+        reportDate,
+      </if>
+      <if test="idcname != null" >
+        idcName,
+      </if>
+      <if test="charger != null" >
+        charger,
+      </if>
+      <if test="statisticians != null" >
+        statisticians,
+      </if>
+      <if test="preparer != null" >
+        preparer,
+      </if>
+      <if test="prepardate != null" >
+        preparDate,
+      </if>
+      <if test="f301 != null" >
+        f301,
+      </if>
+      <if test="f3011 != null" >
+        f3011,
+      </if>
+      <if test="f3012 != null" >
+        f3012,
+      </if>
+      <if test="f3013 != null" >
+        f3013,
+      </if>
+      <if test="f302 != null" >
+        f302,
+      </if>
+      <if test="f303 != null" >
+        f303,
+      </if>
+      <if test="f304 != null" >
+        f304,
+      </if>
+      <if test="f310 != null" >
+        f310,
+      </if>
+      <if test="f311 != null" >
+        f311,
+      </if>
+      <if test="f320 != null" >
+        f320,
+      </if>
+      <if test="f321 != null" >
+        f321,
+      </if>
+      <if test="f330 != null" >
+        f330,
+      </if>
+      <if test="f331 != null" >
+        f331,
+      </if>
+      <if test="f340 != null" >
+        f340,
+      </if>
+      <if test="f341 != null" >
+        f341,
+      </if>
+      <if test="f350 != null" >
+        f350,
+      </if>
+      <if test="f351 != null" >
+        f351,
+      </if>
+      <if test="f360 != null" >
+        f360,
+      </if>
+      <if test="f361 != null" >
+        f361,
+      </if>
+      <if test="f370 != null" >
+        f370,
+      </if>
+      <if test="f371 != null" >
+        f371,
+      </if>
+      <if test="i0 != null" >
+        i0,
+      </if>
+      <if test="i1 != null" >
+        i1,
+      </if>
+      <if test="i2 != null" >
+        i2,
+      </if>
+      <if test="i3 != null" >
+        i3,
+      </if>
+      <if test="i4 != null" >
+        i4,
+      </if>
+      <if test="i5 != null" >
+        i5,
+      </if>
+      <if test="i6 != null" >
+        i6,
+      </if>
+      <if test="i7 != null" >
+        i7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regversion != null" >
+        #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportdate != null" >
+        #{reportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idcname != null" >
+        #{idcname,jdbcType=VARCHAR},
+      </if>
+      <if test="charger != null" >
+        #{charger,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticians != null" >
+        #{statisticians,jdbcType=VARCHAR},
+      </if>
+      <if test="preparer != null" >
+        #{preparer,jdbcType=VARCHAR},
+      </if>
+      <if test="prepardate != null" >
+        #{prepardate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f301 != null" >
+        #{f301,jdbcType=VARCHAR},
+      </if>
+      <if test="f3011 != null" >
+        #{f3011,jdbcType=VARCHAR},
+      </if>
+      <if test="f3012 != null" >
+        #{f3012,jdbcType=VARCHAR},
+      </if>
+      <if test="f3013 != null" >
+        #{f3013,jdbcType=VARCHAR},
+      </if>
+      <if test="f302 != null" >
+        #{f302,jdbcType=VARCHAR},
+      </if>
+      <if test="f303 != null" >
+        #{f303,jdbcType=VARCHAR},
+      </if>
+      <if test="f304 != null" >
+        #{f304,jdbcType=VARCHAR},
+      </if>
+      <if test="f310 != null" >
+        #{f310,jdbcType=VARCHAR},
+      </if>
+      <if test="f311 != null" >
+        #{f311,jdbcType=VARCHAR},
+      </if>
+      <if test="f320 != null" >
+        #{f320,jdbcType=VARCHAR},
+      </if>
+      <if test="f321 != null" >
+        #{f321,jdbcType=VARCHAR},
+      </if>
+      <if test="f330 != null" >
+        #{f330,jdbcType=VARCHAR},
+      </if>
+      <if test="f331 != null" >
+        #{f331,jdbcType=VARCHAR},
+      </if>
+      <if test="f340 != null" >
+        #{f340,jdbcType=VARCHAR},
+      </if>
+      <if test="f341 != null" >
+        #{f341,jdbcType=VARCHAR},
+      </if>
+      <if test="f350 != null" >
+        #{f350,jdbcType=VARCHAR},
+      </if>
+      <if test="f351 != null" >
+        #{f351,jdbcType=VARCHAR},
+      </if>
+      <if test="f360 != null" >
+        #{f360,jdbcType=VARCHAR},
+      </if>
+      <if test="f361 != null" >
+        #{f361,jdbcType=VARCHAR},
+      </if>
+      <if test="f370 != null" >
+        #{f370,jdbcType=VARCHAR},
+      </if>
+      <if test="f371 != null" >
+        #{f371,jdbcType=VARCHAR},
+      </if>
+      <if test="i0 != null" >
+        #{i0,jdbcType=VARCHAR},
+      </if>
+      <if test="i1 != null" >
+        #{i1,jdbcType=VARCHAR},
+      </if>
+      <if test="i2 != null" >
+        #{i2,jdbcType=VARCHAR},
+      </if>
+      <if test="i3 != null" >
+        #{i3,jdbcType=VARCHAR},
+      </if>
+      <if test="i4 != null" >
+        #{i4,jdbcType=VARCHAR},
+      </if>
+      <if test="i5 != null" >
+        #{i5,jdbcType=VARCHAR},
+      </if>
+      <if test="i6 != null" >
+        #{i6,jdbcType=VARCHAR},
+      </if>
+      <if test="i7 != null" >
+        #{i7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.ArganEnergyWarmModel" >
+    update yn_nhjc_argan_energy_warm
+    <set >
+      <if test="regversion != null" >
+        regVersion = #{regversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dicversion != null" >
+        dicVersion = #{dicversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataindex != null" >
+        dataIndex = #{dataindex,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportdate != null" >
+        reportDate = #{reportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idcname != null" >
+        idcName = #{idcname,jdbcType=VARCHAR},
+      </if>
+      <if test="charger != null" >
+        charger = #{charger,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticians != null" >
+        statisticians = #{statisticians,jdbcType=VARCHAR},
+      </if>
+      <if test="preparer != null" >
+        preparer = #{preparer,jdbcType=VARCHAR},
+      </if>
+      <if test="prepardate != null" >
+        preparDate = #{prepardate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f301 != null" >
+        f301 = #{f301,jdbcType=VARCHAR},
+      </if>
+      <if test="f3011 != null" >
+        f3011 = #{f3011,jdbcType=VARCHAR},
+      </if>
+      <if test="f3012 != null" >
+        f3012 = #{f3012,jdbcType=VARCHAR},
+      </if>
+      <if test="f3013 != null" >
+        f3013 = #{f3013,jdbcType=VARCHAR},
+      </if>
+      <if test="f302 != null" >
+        f302 = #{f302,jdbcType=VARCHAR},
+      </if>
+      <if test="f303 != null" >
+        f303 = #{f303,jdbcType=VARCHAR},
+      </if>
+      <if test="f304 != null" >
+        f304 = #{f304,jdbcType=VARCHAR},
+      </if>
+      <if test="f310 != null" >
+        f310 = #{f310,jdbcType=VARCHAR},
+      </if>
+      <if test="f311 != null" >
+        f311 = #{f311,jdbcType=VARCHAR},
+      </if>
+      <if test="f320 != null" >
+        f320 = #{f320,jdbcType=VARCHAR},
+      </if>
+      <if test="f321 != null" >
+        f321 = #{f321,jdbcType=VARCHAR},
+      </if>
+      <if test="f330 != null" >
+        f330 = #{f330,jdbcType=VARCHAR},
+      </if>
+      <if test="f331 != null" >
+        f331 = #{f331,jdbcType=VARCHAR},
+      </if>
+      <if test="f340 != null" >
+        f340 = #{f340,jdbcType=VARCHAR},
+      </if>
+      <if test="f341 != null" >
+        f341 = #{f341,jdbcType=VARCHAR},
+      </if>
+      <if test="f350 != null" >
+        f350 = #{f350,jdbcType=VARCHAR},
+      </if>
+      <if test="f351 != null" >
+        f351 = #{f351,jdbcType=VARCHAR},
+      </if>
+      <if test="f360 != null" >
+        f360 = #{f360,jdbcType=VARCHAR},
+      </if>
+      <if test="f361 != null" >
+        f361 = #{f361,jdbcType=VARCHAR},
+      </if>
+      <if test="f370 != null" >
+        f370 = #{f370,jdbcType=VARCHAR},
+      </if>
+      <if test="f371 != null" >
+        f371 = #{f371,jdbcType=VARCHAR},
+      </if>
+      <if test="i0 != null" >
+        i0 = #{i0,jdbcType=VARCHAR},
+      </if>
+      <if test="i1 != null" >
+        i1 = #{i1,jdbcType=VARCHAR},
+      </if>
+      <if test="i2 != null" >
+        i2 = #{i2,jdbcType=VARCHAR},
+      </if>
+      <if test="i3 != null" >
+        i3 = #{i3,jdbcType=VARCHAR},
+      </if>
+      <if test="i4 != null" >
+        i4 = #{i4,jdbcType=VARCHAR},
+      </if>
+      <if test="i5 != null" >
+        i5 = #{i5,jdbcType=VARCHAR},
+      </if>
+      <if test="i6 != null" >
+        i6 = #{i6,jdbcType=VARCHAR},
+      </if>
+      <if test="i7 != null" >
+        i7 = #{i7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.ArganEnergyWarmModel" >
+    update yn_nhjc_argan_energy_warm
+    set regVersion = #{regversion,jdbcType=VARCHAR},
+      dicVersion = #{dicversion,jdbcType=VARCHAR},
+      dataIndex = #{dataindex,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      reportDate = #{reportdate,jdbcType=TIMESTAMP},
+      idcName = #{idcname,jdbcType=VARCHAR},
+      charger = #{charger,jdbcType=VARCHAR},
+      statisticians = #{statisticians,jdbcType=VARCHAR},
+      preparer = #{preparer,jdbcType=VARCHAR},
+      preparDate = #{prepardate,jdbcType=TIMESTAMP},
+      f301 = #{f301,jdbcType=VARCHAR},
+      f3011 = #{f3011,jdbcType=VARCHAR},
+      f3012 = #{f3012,jdbcType=VARCHAR},
+      f3013 = #{f3013,jdbcType=VARCHAR},
+      f302 = #{f302,jdbcType=VARCHAR},
+      f303 = #{f303,jdbcType=VARCHAR},
+      f304 = #{f304,jdbcType=VARCHAR},
+      f310 = #{f310,jdbcType=VARCHAR},
+      f311 = #{f311,jdbcType=VARCHAR},
+      f320 = #{f320,jdbcType=VARCHAR},
+      f321 = #{f321,jdbcType=VARCHAR},
+      f330 = #{f330,jdbcType=VARCHAR},
+      f331 = #{f331,jdbcType=VARCHAR},
+      f340 = #{f340,jdbcType=VARCHAR},
+      f341 = #{f341,jdbcType=VARCHAR},
+      f350 = #{f350,jdbcType=VARCHAR},
+      f351 = #{f351,jdbcType=VARCHAR},
+      f360 = #{f360,jdbcType=VARCHAR},
+      f361 = #{f361,jdbcType=VARCHAR},
+      f370 = #{f370,jdbcType=VARCHAR},
+      f371 = #{f371,jdbcType=VARCHAR},
+      i0 = #{i0,jdbcType=VARCHAR},
+      i1 = #{i1,jdbcType=VARCHAR},
+      i2 = #{i2,jdbcType=VARCHAR},
+      i3 = #{i3,jdbcType=VARCHAR},
+      i4 = #{i4,jdbcType=VARCHAR},
+      i5 = #{i5,jdbcType=VARCHAR},
+      i6 = #{i6,jdbcType=VARCHAR},
+      i7 = #{i7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

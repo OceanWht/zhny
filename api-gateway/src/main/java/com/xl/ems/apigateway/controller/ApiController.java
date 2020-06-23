@@ -8,7 +8,6 @@ import com.xl.ems.apigateway.common.RestResponse;
 import com.xl.ems.apigateway.model.*;
 import com.xl.ems.apigateway.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -292,7 +291,7 @@ public class ApiController {
 
     @RequestMapping(value = "/GetMeterAnalogTSCurveData",method = RequestMethod.POST)
     @ResponseBody
-    public RestResponse<List<AnalogTSCurveDataBean>> getUnitGroupCurveData(@RequestBody Map<String,String> request){
+    public RestResponse<List<AnalogTSCurveDataBean>> getMeterAnalogTSCurveData(@RequestBody Map<String,String> request){
         if (request == null){
             return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
         }
@@ -334,4 +333,67 @@ public class ApiController {
 
         return RestResponse.success(analogDataBeans);
     }
+
+    @RequestMapping(value = "/GetVagueUnit",method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse<List<UnitInfoBean>> getVagueUnit(@RequestBody Map<String,String> request){
+        if (request == null){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        List<UnitInfoBean> unitInfoBeans = apiService.getVagueUnit(request);
+        if (CollectionUtils.isEmpty(unitInfoBeans)){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        return RestResponse.success(unitInfoBeans);
+    }
+
+
+    @RequestMapping(value = "/GetUnitAllCalcGroup",method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse<List<CalcGroupBean>> getUnitAllCalcGroup(@RequestBody Map<String,String> request){
+        if (request == null){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        List<CalcGroupBean> calcGroupBeans = apiService.getUnitAllCalcGroup(request);
+        if (CollectionUtils.isEmpty(calcGroupBeans)){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        return RestResponse.success(calcGroupBeans);
+    }
+
+    @RequestMapping(value = "/GetUnitGroupCurveData",method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse<List<UnitGroupCurveDataBean>> getUnitGroupCurveData(@RequestBody Map<String,String> request){
+        if (request == null){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        List<UnitGroupCurveDataBean> unitGroupCurveData = apiService.getUnitGroupCurveData(request);
+        if (CollectionUtils.isEmpty(unitGroupCurveData)){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        return RestResponse.success(unitGroupCurveData);
+    }
+
+
+
+   /* @RequestMapping(value = "/GetUnitGroupDayData",method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse<List<UnitGroupDayDataBean>> getUnitGroupDayData(@RequestBody Map<String,String> request){
+        if (request == null){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        List<UnitGroupDayDataBean> unitGroupDayData = apiService.getUnitGroupDayData(request);
+        if (CollectionUtils.isEmpty(unitGroupDayData)){
+            return RestResponse.error(RestCode.WRONG_PARAMS.code,RestCode.WRONG_PARAMS.msg);
+        }
+
+        return RestResponse.success(unitGroupDayData);
+    }*/
 }

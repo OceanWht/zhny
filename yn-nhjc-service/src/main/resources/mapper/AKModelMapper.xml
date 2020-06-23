@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xl.ems.ynnhjc.mapper.AKModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xl.ems.ynnhjc.model.AKModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enterpriseCode" property="enterprisecode" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="akExpiresIn" property="akexpiresin" jdbcType="VARCHAR" />
+    <result column="akValidAt" property="akvalidat" jdbcType="VARCHAR" />
+    <result column="enterpriseUploadTime" property="enterpriseuploadtime" jdbcType="VARCHAR" />
+    <result column="platformURL" property="platformurl" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="backup_field_1" property="backupField1" jdbcType="VARCHAR" />
+    <result column="backup_field_2" property="backupField2" jdbcType="VARCHAR" />
+    <result column="backup_field_3" property="backupField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterpriseCode, password, akExpiresIn, akValidAt, enterpriseUploadTime, platformURL, 
+    token, backup_field_1, backup_field_2, backup_field_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yn_nhjc_getak
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByEP" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_getak
+    where enterprisecode = #{enterprisecode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yn_nhjc_getak
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yn_nhjc_getak
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xl.ems.ynnhjc.model.AKModel" >
+    insert into yn_nhjc_getak (id, enterpriseCode, password, 
+      akExpiresIn, akValidAt, enterpriseUploadTime, 
+      platformURL, token, backup_field_1, 
+      backup_field_2, backup_field_3)
+    values (#{id,jdbcType=INTEGER}, #{enterprisecode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{akexpiresin,jdbcType=VARCHAR}, #{akvalidat,jdbcType=VARCHAR}, #{enterpriseuploadtime,jdbcType=VARCHAR}, 
+      #{platformurl,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{backupField1,jdbcType=VARCHAR}, 
+      #{backupField2,jdbcType=VARCHAR}, #{backupField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xl.ems.ynnhjc.model.AKModel" >
+    insert into yn_nhjc_getak
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterprisecode != null" >
+        enterpriseCode,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="akexpiresin != null" >
+        akExpiresIn,
+      </if>
+      <if test="akvalidat != null" >
+        akValidAt,
+      </if>
+      <if test="enterpriseuploadtime != null" >
+        enterpriseUploadTime,
+      </if>
+      <if test="platformurl != null" >
+        platformURL,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1,
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2,
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enterprisecode != null" >
+        #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="akexpiresin != null" >
+        #{akexpiresin,jdbcType=VARCHAR},
+      </if>
+      <if test="akvalidat != null" >
+        #{akvalidat,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseuploadtime != null" >
+        #{enterpriseuploadtime,jdbcType=VARCHAR},
+      </if>
+      <if test="platformurl != null" >
+        #{platformurl,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xl.ems.ynnhjc.model.AKModel" >
+    update yn_nhjc_getak
+    <set >
+      <if test="enterprisecode != null" >
+        enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="akexpiresin != null" >
+        akExpiresIn = #{akexpiresin,jdbcType=VARCHAR},
+      </if>
+      <if test="akvalidat != null" >
+        akValidAt = #{akvalidat,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseuploadtime != null" >
+        enterpriseUploadTime = #{enterpriseuploadtime,jdbcType=VARCHAR},
+      </if>
+      <if test="platformurl != null" >
+        platformURL = #{platformurl,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField1 != null" >
+        backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField2 != null" >
+        backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      </if>
+      <if test="backupField3 != null" >
+        backup_field_3 = #{backupField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xl.ems.ynnhjc.model.AKModel" >
+    update yn_nhjc_getak
+    set enterpriseCode = #{enterprisecode,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      akExpiresIn = #{akexpiresin,jdbcType=VARCHAR},
+      akValidAt = #{akvalidat,jdbcType=VARCHAR},
+      enterpriseUploadTime = #{enterpriseuploadtime,jdbcType=VARCHAR},
+      platformURL = #{platformurl,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      backup_field_1 = #{backupField1,jdbcType=VARCHAR},
+      backup_field_2 = #{backupField2,jdbcType=VARCHAR},
+      backup_field_3 = #{backupField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
